@@ -70,9 +70,19 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123},report
 
 // Search reward-area combinations, evaluating the actual completed placements,
 // including accidentally activated areas and every curse penalty.
-export function maximizeStats({recipe,iotas,skills,targets=[],timeMs=5000,seed=1123},report=()=>{}){
+export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=null,timeMs=5000,seed=1123},report=()=>{}){
  const begin=Date.now(),deadline=begin+Math.max(100,timeMs),full=recipe.areas.map((_,i)=>i);
  const ceiling=recipeStats(recipe),nonnegative=recipe.areas.every(a=>a.effects.every(e=>![3,4,5,6].includes(e.type)||Number(e.params[0])>=0));
+
+ // Start with high-value, low-cost combinations before random mutations.
+ // A tiny +1 reward can also remove most of the particle budget.
+ const ranked=full.map(i=>{const a=recipe.areas[i],cost=a.effects.filter(e=>e.type===15).reduce((n,e)=>n+Number(e.params[0]),0);
+ const value=a.effects.reduce((n,e)=>n+([3,4].includes(e.type)?Number(e.params[0]):e.type===5?ceiling.basePower*Number(e.params[0])/100:e.type===6?ceiling.baseFortitude*Number(e.params[0])/100:0),0);
+ return {i,cost,value,priority:value/Math.max(1,a.cells.length)/(1+cost*2)};}).filter(a=>a.value>0).sort((a,b)=>b.priority-a.priority);
+ const free=ranked.filter(a=>a.cost<=0).map(a=>a.i),valuable=ranked.map(a=>a.i),seeds=[];
+ for(let n=1;n<=free.length;n++)seeds.push(free.slice(0,n));
+ seeds.push(valuable,full);for(let n=1;n<=valuable.length;n++)seeds.push(valuable.slice(0,n));
+ const distinct=new Set(),plans=seeds.filter(a=>{const k=a.slice().sort((a,b)=>a-b).join(',');if(!a.length||distinct.has(k))return false;distinct.add(k);return true});
  const required=new Set(targets),requiredCells=recipe.cells.filter(c=>required.has(key(c)));
  let state=seed>>>0,iterations=0,last=begin;
  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
@@ -83,11 +93,12 @@ export function maximizeStats({recipe,iotas,skills,targets=[],timeMs=5000,seed=1
    report({type:'progress',result:best,iterations});
   }
  };
+ if(initialSolution?.placements)consider({...initialSolution,score:score(recipe,skills,initialSolution.placements)});
  if(required.size){solve({recipe,iotas,skills,targets:[...required],seed,timeMs:Math.min(180,timeMs)},m=>{if(m.result)consider(m.result)});}else consider({placements:[],score:score(recipe,skills,[])});
  while(Date.now()<deadline&&!best?.provenOptimal){
   let areas;
-  if(iterations===0)areas=full;
-  else if(iterations<=full.length)areas=[iterations-1];
+  if(iterations<plans.length)areas=plans[iterations];
+  else if(iterations<plans.length+full.length)areas=[iterations-plans.length];
   else if(iterations%4===0)areas=full.filter(()=>rand()<.25+rand()*.65);
   else{const active=new Set(best.score.activeAreas);for(let j=0;j<1+Math.floor(rand()*3);j++){const i=Math.floor(rand()*full.length);active.has(i)?active.delete(i):active.add(i)}areas=[...active]}
   const targets=[...new Set([...required,...areas.flatMap(i=>recipe.areas[i].cells).filter(c=>c[2]>0&&c[2]<6).map(key)])];
