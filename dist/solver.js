@@ -31,7 +31,8 @@ export function candidates(recipe,iotas,targets){
  }
  return {out,byTarget,targetCells};
 }
-export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123},report=()=>{}){
+export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false},report=()=>{}){
+ if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
  const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),{out,byTarget,targetCells}=candidates(recipe,iotas,targetSet);
  if(!targetCells.length)throw Error('没有有效目标');if(byTarget.some(a=>!a.length))throw Error('某些目标没有合法粒子覆盖');
  let state=seed>>>0;const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
@@ -70,7 +71,8 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123},report
 
 // Search reward-area combinations, evaluating the actual completed placements,
 // including accidentally activated areas and every curse penalty.
-export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=null,timeMs=5000,seed=1123},report=()=>{}){
+export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=null,timeMs=5000,seed=1123,excludeTier3=false},report=()=>{}){
+ if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
  const begin=Date.now(),deadline=begin+Math.max(100,timeMs),full=recipe.areas.map((_,i)=>i);
  const ceiling=recipeStats(recipe),nonnegative=recipe.areas.every(a=>a.effects.every(e=>![3,4,5,6].includes(e.type)||Number(e.params[0])>=0));
 
@@ -93,7 +95,7 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
    report({type:'progress',result:best,iterations});
   }
  };
- if(initialSolution?.placements)consider({...initialSolution,score:score(recipe,skills,initialSolution.placements)});
+ if(initialSolution?.placements&&initialSolution.placements.every(p=>iotas.some(i=>i.id===p.id)))consider({...initialSolution,score:score(recipe,skills,initialSolution.placements)});
  if(required.size){solve({recipe,iotas,skills,targets:[...required],seed,timeMs:Math.min(180,timeMs)},m=>{if(m.result)consider(m.result)});}else consider({placements:[],score:score(recipe,skills,[])});
  while(Date.now()<deadline&&!best?.provenOptimal){
   let areas;
