@@ -1,0 +1,341 @@
+{
+  "tests": "penalty fixtures + all 42 recipes independently validated",
+  "results": [
+    {
+      "recipe": "1-1-a",
+      "targets": 28,
+      "particles": 9,
+      "penalties": 0,
+      "iterations": 1,
+      "ms": 7
+    },
+    {
+      "recipe": "1-1-i",
+      "targets": 22,
+      "particles": 8,
+      "penalties": 0,
+      "iterations": 1,
+      "ms": 4
+    },
+    {
+      "recipe": "1-1-m",
+      "targets": 18,
+      "particles": 6,
+      "penalties": 1,
+      "iterations": 915,
+      "ms": 300
+    },
+    {
+      "recipe": "1-1-n",
+      "targets": 19,
+      "particles": 8,
+      "penalties": 0,
+      "iterations": 10,
+      "ms": 9
+    },
+    {
+      "recipe": "1-2-m",
+      "targets": 29,
+      "particles": 9,
+      "penalties": 1,
+      "iterations": 545,
+      "ms": 300
+    },
+    {
+      "recipe": "1-2-n",
+      "targets": 34,
+      "particles": 14,
+      "penalties": 2,
+      "iterations": 618,
+      "ms": 300
+    },
+    {
+      "recipe": "2-1-a",
+      "targets": 48,
+      "particles": 16,
+      "penalties": 2,
+      "iterations": 516,
+      "ms": 300
+    },
+    {
+      "recipe": "2-1-m",
+      "targets": 18,
+      "particles": 7,
+      "penalties": 1,
+      "iterations": 786,
+      "ms": 300
+    },
+    {
+      "recipe": "2-1-n",
+      "targets": 39,
+      "particles": 12,
+      "penalties": 0,
+      "iterations": 84,
+      "ms": 42
+    },
+    {
+      "recipe": "2-1-s",
+      "targets": 49,
+      "particles": 17,
+      "penalties": 2,
+      "iterations": 505,
+      "ms": 300
+    },
+    {
+      "recipe": "2-2-a",
+      "targets": 59,
+      "particles": 18,
+      "penalties": 1,
+      "iterations": 393,
+      "ms": 300
+    },
+    {
+      "recipe": "2-2-i",
+      "targets": 54,
+      "particles": 15,
+      "penalties": 0,
+      "iterations": 7,
+      "ms": 13
+    },
+    {
+      "recipe": "2-2-s",
+      "targets": 57,
+      "particles": 17,
+      "penalties": 1,
+      "iterations": 464,
+      "ms": 300
+    },
+    {
+      "recipe": "2b-1-a",
+      "targets": 68,
+      "particles": 24,
+      "penalties": 7,
+      "iterations": 342,
+      "ms": 300
+    },
+    {
+      "recipe": "2b-1-i",
+      "targets": 66,
+      "particles": 23,
+      "penalties": 8,
+      "iterations": 366,
+      "ms": 300
+    },
+    {
+      "recipe": "2b-1-m",
+      "targets": 40,
+      "particles": 19,
+      "penalties": 10,
+      "iterations": 420,
+      "ms": 300
+    },
+    {
+      "recipe": "2b-1-n",
+      "targets": 55,
+      "particles": 21,
+      "penalties": 8,
+      "iterations": 332,
+      "ms": 300
+    },
+    {
+      "recipe": "2b-1-s",
+      "targets": 90,
+      "particles": 30,
+      "penalties": 13,
+      "iterations": 246,
+      "ms": 300
+    },
+    {
+      "recipe": "3-1-i",
+      "targets": 65,
+      "particles": 16,
+      "penalties": 2,
+      "iterations": 525,
+      "ms": 300
+    },
+    {
+      "recipe": "3-1-m",
+      "targets": 43,
+      "particles": 11,
+      "penalties": 3,
+      "iterations": 556,
+      "ms": 300
+    },
+    {
+      "recipe": "3-1-n",
+      "targets": 51,
+      "particles": 15,
+      "penalties": 1,
+      "iterations": 570,
+      "ms": 300
+    },
+    {
+      "recipe": "3-1-s",
+      "targets": 67,
+      "particles": 22,
+      "penalties": 2,
+      "iterations": 232,
+      "ms": 300
+    },
+    {
+      "recipe": "3-2-a",
+      "targets": 66,
+      "particles": 22,
+      "penalties": 8,
+      "iterations": 179,
+      "ms": 300
+    },
+    {
+      "recipe": "3-2-i",
+      "targets": 66,
+      "particles": 24,
+      "penalties": 10,
+      "iterations": 183,
+      "ms": 300
+    },
+    {
+      "recipe": "3-2-m",
+      "targets": 38,
+      "particles": 10,
+      "penalties": 0,
+      "iterations": 418,
+      "ms": 270
+    },
+    {
+      "recipe": "3-2-n",
+      "targets": 62,
+      "particles": 20,
+      "penalties": 7,
+      "iterations": 252,
+      "ms": 300
+    },
+    {
+      "recipe": "3-2-s",
+      "targets": 72,
+      "particles": 26,
+      "penalties": 7,
+      "iterations": 228,
+      "ms": 300
+    },
+    {
+      "recipe": "3-3-a",
+      "targets": 51,
+      "particles": 21,
+      "penalties": 4,
+      "iterations": 276,
+      "ms": 300
+    },
+    {
+      "recipe": "4-1-a",
+      "targets": 59,
+      "particles": 20,
+      "penalties": 4,
+      "iterations": 239,
+      "ms": 300
+    },
+    {
+      "recipe": "4-1-m",
+      "targets": 31,
+      "particles": 14,
+      "penalties": 6,
+      "iterations": 290,
+      "ms": 300
+    },
+    {
+      "recipe": "4-1-s",
+      "targets": 81,
+      "particles": 26,
+      "penalties": 7,
+      "iterations": 257,
+      "ms": 300
+    },
+    {
+      "recipe": "4-2-a",
+      "targets": 22,
+      "particles": 22,
+      "penalties": 8,
+      "iterations": 186,
+      "ms": 300
+    },
+    {
+      "recipe": "4-2-i",
+      "targets": 58,
+      "particles": 19,
+      "penalties": 4,
+      "iterations": 288,
+      "ms": 300
+    },
+    {
+      "recipe": "4-2-m",
+      "targets": 33,
+      "particles": 12,
+      "penalties": 2,
+      "iterations": 432,
+      "ms": 300
+    },
+    {
+      "recipe": "4-2-n",
+      "targets": 43,
+      "particles": 20,
+      "penalties": 6,
+      "iterations": 261,
+      "ms": 300
+    },
+    {
+      "recipe": "4-2-s",
+      "targets": 79,
+      "particles": 22,
+      "penalties": 5,
+      "iterations": 190,
+      "ms": 300
+    },
+    {
+      "recipe": "4-3-a",
+      "targets": 50,
+      "particles": 21,
+      "penalties": 5,
+      "iterations": 312,
+      "ms": 300
+    },
+    {
+      "recipe": "4-3-i",
+      "targets": 72,
+      "particles": 21,
+      "penalties": 8,
+      "iterations": 266,
+      "ms": 300
+    },
+    {
+      "recipe": "4-3-m",
+      "targets": 47,
+      "particles": 16,
+      "penalties": 7,
+      "iterations": 299,
+      "ms": 300
+    },
+    {
+      "recipe": "4-3-s",
+      "targets": 90,
+      "particles": 30,
+      "penalties": 14,
+      "iterations": 135,
+      "ms": 300
+    },
+    {
+      "recipe": "4b-1-n",
+      "targets": 66,
+      "particles": 13,
+      "penalties": 0,
+      "iterations": 1,
+      "ms": 8
+    },
+    {
+      "recipe": "4-3-n",
+      "targets": 111,
+      "particles": 30,
+      "penalties": 75,
+      "iterations": 124,
+      "ms": 300
+    }
+  ]
+}
