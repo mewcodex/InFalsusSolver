@@ -25,7 +25,7 @@ const hero=ranking.rows.find(r=>r.id===72),heroRecipe=d.recipes.find(r=>r.id===7
 const heroStats=verify(heroRecipe,fixture);assert.equal(heroStats.power+heroStats.fortitude,83916);if(hero.result.value<83916)hero.result={...fixture,objective:'stats',stats:heroStats,value:83916,provenOptimal:false};
 const changes=[];
 for(const row of ranking.rows){const r=d.recipes.find(r=>r.id===row.id),before=row.result.value;
- if(row.result.value<row.upper){const x=maximizeStats({recipe:r,iotas:d.iotas,skills:d.characters[r.character].skills,initialSolution:row.result,timeMs:6000,seed:5561});const stats=verify(r,x);assert.ok(x.value>=row.result.value);row.result={...x,stats};}
+ if(row.result.value<row.upper){const x=maximizeStats({recipe:r,iotas:d.iotas,skills:d.characters[r.character].skills,initialSolution:row.result,timeMs:Number(process.env.SOLVER_MS||10000),seed:Number(process.env.SOLVER_SEED||93512)});const stats=verify(r,x);assert.ok(x.value>=row.result.value);row.result={...x,stats};}
  changes.push({id:row.id,name:row.name,before,after:row.result.value,upper:row.upper});console.log(JSON.stringify(changes.at(-1)));
  
 }

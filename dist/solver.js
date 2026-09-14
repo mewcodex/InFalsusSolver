@@ -31,20 +31,27 @@ export function candidates(recipe,iotas,targets){
  }
  return {out,byTarget,targetCells};
 }
-export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false},report=()=>{}){
+export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false,initialSolution=null,preparedCandidates=null,onCandidate=null},report=()=>{}){
  if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
- const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),{out,byTarget,targetCells}=candidates(recipe,iotas,targetSet);
+ const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),{out,byTarget,targetCells}=preparedCandidates||candidates(recipe,iotas,targetSet);
  if(!targetCells.length)throw Error('没有有效目标');if(byTarget.some(a=>!a.length))throw Error('某些目标没有合法粒子覆盖');
  let state=seed>>>0;const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
  const safe=new Set(recipe.cells.map(key));
  const clean=ps=>{let counts=new Int16Array(targetCells.length);ps.forEach(p=>p.cover?.forEach(i=>counts[i]++));for(let j=ps.length-1;j>=0;j--){let p=ps[j];if(p.cover?.length&&p.cover.every(i=>counts[i]>1)){p.cover.forEach(i=>counts[i]--);ps.splice(j,1)}}return ps};
  let initial=targetCells.map((c,i)=>out[byTarget[i].find(j=>out[j].cells.length===1)]);if(initial.some(x=>!x))throw Error('缺少单格粒子');
+ // Reuse the previous geometry and repair only uncovered target cells.
+ if(initialSolution?.placements?.length){
+  const signature=p=>p.color+':'+p.cells.map(key).sort().join(';'),lookup=new Map(out.map(p=>[signature(p),p])),warm=[],seen=new Set(),covered=new Set();
+  for(const p of initialSolution.placements){const candidate=lookup.get(signature(p));if(candidate&&!seen.has(candidate)){seen.add(candidate);warm.push(candidate);candidate.cover.forEach(i=>covered.add(i));}}
+  const repaired=clean([...warm,...initial.filter((_,i)=>!covered.has(i))]);
+  const a=score(recipe,skills,initial),b=score(recipe,skills,repaired);if(b.total<a.total||b.total===a.total&&repaired.length<initial.length)initial=repaired;
+ }
  let best={placements:initial,score:score(recipe,skills,initial)},iterations=0,last=begin;
- const accept=ps=>{const s=score(recipe,skills,ps);if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
+ const accept=ps=>{const s=score(recipe,skills,ps);onCandidate?.({placements:ps,score:s});if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
  report({type:'progress',result:best,iterations});
  while(Date.now()<deadline&&best.score.total>0){
   let ps=[],covered=new Uint8Array(targetCells.length),occ=new Map(),remaining=targetCells.length;
-  if(iterations%3!==0){ps=best.placements.filter(p=>p.cover?.length&&rand()>.25-rand()*.1);for(const p of ps){for(const i of p.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of p.cells)occ.set(key(c),(occ.get(key(c))||0)+1)}}
+  if(iterations%3!==0||initialSolution&&iterations===0){ps=best.placements.filter(p=>p.cover?.length&&rand()>.25-rand()*.1);for(const p of ps){for(const i of p.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of p.cells)occ.set(key(c),(occ.get(key(c))||0)+1)}}
   const overlapWeight=.15+rand()*1.5,unsafeWeight=.15+rand()*2,joinWeight=rand()*.8;
   while(remaining&&Date.now()<deadline){
    let ti=-1,small=Infinity;for(let i=0;i<targetCells.length;i++)if(!covered[i]){const n=byTarget[i].length*(.6+rand());if(n<small){small=n;ti=i}}
@@ -81,21 +88,28 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
  const ranked=full.map(i=>{const a=recipe.areas[i],cost=a.effects.filter(e=>e.type===15).reduce((n,e)=>n+Number(e.params[0]),0);
  const value=a.effects.reduce((n,e)=>n+([3,4].includes(e.type)?Number(e.params[0]):e.type===5?ceiling.basePower*Number(e.params[0])/100:e.type===6?ceiling.baseFortitude*Number(e.params[0])/100:0),0);
  return {i,cost,value,priority:value/Math.max(1,a.cells.length)/(1+cost*2)};}).filter(a=>a.value>0).sort((a,b)=>b.priority-a.priority);
+ // Explore additions and one-for-one swaps around a known high-value solution.
+ const neighborhood=[];
+ if(initialSolution?.score?.activeAreas){const active=initialSolution.score.activeAreas,missing=ranked.map(a=>a.i).filter(i=>!active.includes(i));
+  for(const add of missing)neighborhood.push([...active,add]);
+  for(const add of missing)for(const remove of active)neighborhood.push([...active.filter(i=>i!==remove),add]);
+ }
  const free=ranked.filter(a=>a.cost<=0).map(a=>a.i),valuable=ranked.map(a=>a.i),seeds=[];
  for(let n=1;n<=free.length;n++)seeds.push(free.slice(0,n));
  seeds.push(valuable,full);for(let n=1;n<=valuable.length;n++)seeds.push(valuable.slice(0,n));
- const distinct=new Set(),plans=seeds.filter(a=>{const k=a.slice().sort((a,b)=>a-b).join(',');if(!a.length||distinct.has(k))return false;distinct.add(k);return true});
+ const distinct=new Set(),plans=[...neighborhood,...seeds].filter(a=>{const k=a.slice().sort((a,b)=>a-b).join(',');if(!a.length||distinct.has(k))return false;distinct.add(k);return true});
  const required=new Set(targets),requiredCells=recipe.cells.filter(c=>required.has(key(c)));
  let state=seed>>>0,iterations=0,last=begin;
  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
  let best=null;
  const consider=result=>{const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(requiredCells.some(c=>!covered.has(c.join(','))))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;
   if(!best||value>best.value||value===best.value&&(result.score.total<best.score.total||result.score.total===best.score.total&&result.placements.length<best.placements.length)){
-   best={...result,objective:'stats',value,stats,provenOptimal:nonnegative&&value===ceiling.power+ceiling.fortitude};
+   best={...result,placements:result.placements.slice(),objective:'stats',value,stats,provenOptimal:nonnegative&&value===ceiling.power+ceiling.fortitude};
    report({type:'progress',result:best,iterations});
   }
  };
  if(initialSolution?.placements&&initialSolution.placements.every(p=>iotas.some(i=>i.id===p.id)))consider({...initialSolution,score:score(recipe,skills,initialSolution.placements)});
+ const candidateCache=new Map(),planBest=new Map();
  if(required.size){solve({recipe,iotas,skills,targets:[...required],seed,timeMs:Math.min(180,timeMs)},m=>{if(m.result)consider(m.result)});}else consider({placements:[],score:score(recipe,skills,[])});
  while(Date.now()<deadline&&!best?.provenOptimal){
   let areas;
@@ -104,7 +118,14 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
   else if(iterations%4===0)areas=full.filter(()=>rand()<.25+rand()*.65);
   else{const active=new Set(best.score.activeAreas);for(let j=0;j<1+Math.floor(rand()*3);j++){const i=Math.floor(rand()*full.length);active.has(i)?active.delete(i):active.add(i)}areas=[...active]}
   const targets=[...new Set([...required,...areas.flatMap(i=>recipe.areas[i].cells).filter(c=>c[2]>0&&c[2]<6).map(key)])];
-  if(targets.length){solve({recipe,iotas,skills,targets,seed:Math.floor(rand()*4294967296),timeMs:Math.min(180,Math.max(1,deadline-Date.now()))},m=>{if(m.result)consider(m.result)});}
+  if(targets.length){
+   const planKey=targets.slice().sort().join(';');let prepared=candidateCache.get(planKey);
+   if(!prepared){prepared=candidates(recipe,iotas,new Set(targets));if(candidateCache.size>=32)candidateCache.delete(candidateCache.keys().next().value);candidateCache.set(planKey,prepared);}
+   if(Date.now()>=deadline)break;
+   const previous=planBest.get(planKey),warm=previous||best;
+   const result=solve({recipe,iotas,skills,targets,initialSolution:warm,preparedCandidates:prepared,onCandidate:consider,seed:Math.floor(rand()*4294967296),timeMs:Math.min(250,Math.max(1,deadline-Date.now()))},m=>{if(m.result)consider(m.result)});
+   if(!previous||result.score.total<previous.score.total||result.score.total===previous.score.total&&result.placements.length<previous.placements.length)planBest.set(planKey,result);
+  }
   iterations++;
   if(Date.now()-last>500){report({type:'progress',result:best,iterations});last=Date.now()}
  }
