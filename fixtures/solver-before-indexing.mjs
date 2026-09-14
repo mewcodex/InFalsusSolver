@@ -1,5 +1,5 @@
-import {conditionPlans,satisfies} from './conditions.js?v=range-20260914-1';
-import {theoreticalStats,recipeStats} from './card-stats.js';
+import {conditionPlans,satisfies} from '../dist/conditions.js?v=range-20260914-1';
+import {theoreticalStats,recipeStats} from '../dist/card-stats.js';
 // Axial hex coordinates. Placement anchors refer to the original serialized origin.
 export const key=c=>c[0]+','+c[1];
 const dirs=[[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
@@ -32,23 +32,12 @@ export function candidates(recipe,iotas,targets){
  }
  return {out,byTarget,targetCells};
 }
-// Compile coordinates once per candidate set; the hot search loop only uses integers.
-const geometryCache=new WeakMap();
-function compileGeometry(prepared){
- let compiled=geometryCache.get(prepared);if(compiled)return compiled;
- const index=new Map(),coords=[];
- const intern=c=>{const k=key(c);if(!index.has(k)){index.set(k,coords.length);coords.push(c)}return index.get(k)};
- const cells=prepared.out.map(p=>p.cells.map(intern));
- const neighbors=coords.map(c=>dirs.map(d=>index.get(key([c[0]+d[0],c[1]+d[1]]))).filter(i=>i!==undefined));
- compiled={cells,neighbors,size:coords.length,lookup:new Map(prepared.out.map((p,i)=>[p,cells[i]]))};
- geometryCache.set(prepared,compiled);return compiled;
-}
 export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false,initialSolution=null,preparedCandidates=null,onCandidate=null},report=()=>{}){
  if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
- const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),prepared=preparedCandidates||candidates(recipe,iotas,targetSet),{out,byTarget,targetCells}=prepared;
+ const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),{out,byTarget,targetCells}=preparedCandidates||candidates(recipe,iotas,targetSet);
  if(!targetCells.length)throw Error('没有有效目标');if(byTarget.some(a=>!a.length))throw Error('某些目标没有合法粒子覆盖');
  let state=seed>>>0;const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
- const safe=new Set(recipe.cells.map(key)),geometry=compileGeometry(prepared);
+ const safe=new Set(recipe.cells.map(key));
  const clean=ps=>{let counts=new Int16Array(targetCells.length);ps.forEach(p=>p.cover?.forEach(i=>counts[i]++));for(let j=ps.length-1;j>=0;j--){let p=ps[j];if(p.cover?.length&&p.cover.every(i=>counts[i]>1)){p.cover.forEach(i=>counts[i]--);ps.splice(j,1)}}return ps};
  let initial=targetCells.map((c,i)=>out[byTarget[i].find(j=>out[j].cells.length===1)]);if(initial.some(x=>!x))throw Error('缺少单格粒子');
  // Reuse the previous geometry and repair only uncovered target cells.
@@ -62,15 +51,15 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
  const accept=ps=>{const s=score(recipe,skills,ps);onCandidate?.({placements:ps,score:s});if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
  report({type:'progress',result:best,iterations});
  while(Date.now()<deadline&&best.score.total>0){
-  let ps=[],covered=new Uint8Array(targetCells.length),occ=new Uint16Array(geometry.size),remaining=targetCells.length;
-  if(iterations%3!==0||initialSolution&&iterations===0){ps=best.placements.filter(p=>p.cover?.length&&rand()>.25-rand()*.1);for(const p of ps){for(const i of p.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of geometry.lookup.get(p))occ[c]++}}
+  let ps=[],covered=new Uint8Array(targetCells.length),occ=new Map(),remaining=targetCells.length;
+  if(iterations%3!==0||initialSolution&&iterations===0){ps=best.placements.filter(p=>p.cover?.length&&rand()>.25-rand()*.1);for(const p of ps){for(const i of p.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of p.cells)occ.set(key(c),(occ.get(key(c))||0)+1)}}
   const overlapWeight=.15+rand()*1.5,unsafeWeight=.15+rand()*2,joinWeight=rand()*.8;
   while(remaining&&Date.now()<deadline){
    let ti=-1,small=Infinity;for(let i=0;i<targetCells.length;i++)if(!covered[i]){const n=byTarget[i].length*(.6+rand());if(n<small){small=n;ti=i}}
    let chosen=null,bestRank=-Infinity;
-   for(const j of byTarget[ti]){const p=out[j];let gain=0,over=0,adj=0;for(const i of p.cover)gain+=!covered[i];for(const c of geometry.cells[j]){if(occ[c])over++;else{for(const n of geometry.neighbors[c])if(occ[n]){adj++;break}}}
+   for(const j of byTarget[ti]){const p=out[j];let gain=0,over=0,adj=0;for(const i of p.cover)gain+=!covered[i];for(const c of p.cells){if(occ.has(key(c)))over++;else if(dirs.some(d=>occ.has(key([c[0]+d[0],c[1]+d[1]]))))adj++}
     const rank=gain/(1+over*overlapWeight+(p.unsafe?unsafeWeight:0))+.08*adj*joinWeight+rand()*(iterations===0?.001:.4);if(rank>bestRank){bestRank=rank;chosen=p}}
-   ps.push(chosen);for(const i of chosen.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of geometry.lookup.get(chosen))occ[c]++;
+   ps.push(chosen);for(const i of chosen.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of chosen.cells)occ.set(key(c),(occ.get(key(c))||0)+1);
   }
   if(remaining)break;clean(ps);accept(ps);
   // Add connecting single cells along shortest safe paths, then keep only improvements.

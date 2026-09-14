@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 1,
+    "newIterations": 1,
+    "oldMs": 15,
+    "newMs": 12
+  },
+  {
+    "id": 2,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 1,
+    "newIterations": 1,
+    "oldMs": 5,
+    "newMs": 6
+  },
+  {
+    "id": 3,
+    "before": 1,
+    "after": 1,
+    "oldIterations": 866,
+    "newIterations": 990,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 4,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 10,
+    "newIterations": 10,
+    "oldMs": 17,
+    "newMs": 9
+  },
+  {
+    "id": 5,
+    "before": 1,
+    "after": 1,
+    "oldIterations": 594,
+    "newIterations": 1680,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 6,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 433,
+    "newIterations": 1202,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 7,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 563,
+    "newIterations": 1102,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 9,
+    "before": 1,
+    "after": 1,
+    "oldIterations": 385,
+    "newIterations": 654,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 10,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 84,
+    "newIterations": 84,
+    "oldMs": 117,
+    "newMs": 48
+  },
+  {
+    "id": 11,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 360,
+    "newIterations": 1056,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 12,
+    "before": 2,
+    "after": 1,
+    "oldIterations": 264,
+    "newIterations": 881,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 13,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 7,
+    "newIterations": 7,
+    "oldMs": 18,
+    "newMs": 14
+  },
+  {
+    "id": 14,
+    "before": 1,
+    "after": 1,
+    "oldIterations": 360,
+    "newIterations": 775,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 15,
+    "before": 7,
+    "after": 7,
+    "oldIterations": 207,
+    "newIterations": 757,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 16,
+    "before": 8,
+    "after": 8,
+    "oldIterations": 251,
+    "newIterations": 648,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 17,
+    "before": 10,
+    "after": 10,
+    "oldIterations": 219,
+    "newIterations": 802,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 18,
+    "before": 8,
+    "after": 8,
+    "oldIterations": 259,
+    "newIterations": 703,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 19,
+    "before": 13,
+    "after": 12,
+    "oldIterations": 137,
+    "newIterations": 328,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 33,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 250,
+    "newIterations": 676,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 34,
+    "before": 3,
+    "after": 3,
+    "oldIterations": 337,
+    "newIterations": 716,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 35,
+    "before": 1,
+    "after": 1,
+    "oldIterations": 328,
+    "newIterations": 996,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 36,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 258,
+    "newIterations": 684,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 37,
+    "before": 8,
+    "after": 7,
+    "oldIterations": 177,
+    "newIterations": 462,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 38,
+    "before": 10,
+    "after": 8,
+    "oldIterations": 155,
+    "newIterations": 369,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 39,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 418,
+    "newIterations": 418,
+    "oldMs": 333,
+    "newMs": 144
+  },
+  {
+    "id": 40,
+    "before": 7,
+    "after": 7,
+    "oldIterations": 246,
+    "newIterations": 677,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 41,
+    "before": 7,
+    "after": 6,
+    "oldIterations": 229,
+    "newIterations": 581,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 42,
+    "before": 4,
+    "after": 4,
+    "oldIterations": 281,
+    "newIterations": 820,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 58,
+    "before": 4,
+    "after": 3,
+    "oldIterations": 243,
+    "newIterations": 599,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 59,
+    "before": 6,
+    "after": 6,
+    "oldIterations": 384,
+    "newIterations": 745,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 60,
+    "before": 7,
+    "after": 6,
+    "oldIterations": 311,
+    "newIterations": 754,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 61,
+    "before": 8,
+    "after": 7,
+    "oldIterations": 221,
+    "newIterations": 792,
+    "oldMs": 351,
+    "newMs": 350
+  },
+  {
+    "id": 62,
+    "before": 4,
+    "after": 3,
+    "oldIterations": 350,
+    "newIterations": 984,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 63,
+    "before": 2,
+    "after": 2,
+    "oldIterations": 485,
+    "newIterations": 1449,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 64,
+    "before": 6,
+    "after": 5,
+    "oldIterations": 255,
+    "newIterations": 819,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 65,
+    "before": 5,
+    "after": 5,
+    "oldIterations": 189,
+    "newIterations": 432,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 66,
+    "before": 5,
+    "after": 5,
+    "oldIterations": 309,
+    "newIterations": 774,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 67,
+    "before": 8,
+    "after": 6,
+    "oldIterations": 271,
+    "newIterations": 743,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 68,
+    "before": 7,
+    "after": 6,
+    "oldIterations": 321,
+    "newIterations": 646,
+    "oldMs": 350,
+    "newMs": 350
+  },
+  {
+    "id": 70,
+    "before": 15,
+    "after": 11,
+    "oldIterations": 129,
+    "newIterations": 265,
+    "oldMs": 351,
+    "newMs": 350
+  },
+  {
+    "id": 71,
+    "before": 0,
+    "after": 0,
+    "oldIterations": 1,
+    "newIterations": 1,
+    "oldMs": 13,
+    "newMs": 11
+  },
+  {
+    "id": 72,
+    "before": 75,
+    "after": 75,
+    "oldIterations": 123,
+    "newIterations": 289,
+    "oldMs": 350,
+    "newMs": 350
+  }
+]

@@ -7,7 +7,7 @@
       "particles": 9,
       "penalties": 0,
       "iterations": 1,
-      "ms": 7
+      "ms": 12
     },
     {
       "recipe": "1-1-i",
@@ -15,14 +15,14 @@
       "particles": 8,
       "penalties": 0,
       "iterations": 1,
-      "ms": 4
+      "ms": 6
     },
     {
       "recipe": "1-1-m",
       "targets": 18,
       "particles": 6,
       "penalties": 1,
-      "iterations": 915,
+      "iterations": 960,
       "ms": 300
     },
     {
@@ -31,14 +31,14 @@
       "particles": 8,
       "penalties": 0,
       "iterations": 10,
-      "ms": 9
+      "ms": 8
     },
     {
       "recipe": "1-2-m",
       "targets": 29,
       "particles": 9,
       "penalties": 1,
-      "iterations": 545,
+      "iterations": 1651,
       "ms": 300
     },
     {
@@ -46,7 +46,7 @@
       "targets": 34,
       "particles": 14,
       "penalties": 2,
-      "iterations": 618,
+      "iterations": 1258,
       "ms": 300
     },
     {
@@ -54,7 +54,7 @@
       "targets": 48,
       "particles": 16,
       "penalties": 2,
-      "iterations": 516,
+      "iterations": 1149,
       "ms": 300
     },
     {
@@ -62,7 +62,7 @@
       "targets": 18,
       "particles": 7,
       "penalties": 1,
-      "iterations": 786,
+      "iterations": 1185,
       "ms": 300
     },
     {
@@ -71,14 +71,14 @@
       "particles": 12,
       "penalties": 0,
       "iterations": 84,
-      "ms": 42
+      "ms": 47
     },
     {
       "recipe": "2-1-s",
       "targets": 49,
       "particles": 17,
       "penalties": 2,
-      "iterations": 505,
+      "iterations": 1105,
       "ms": 300
     },
     {
@@ -86,7 +86,7 @@
       "targets": 59,
       "particles": 18,
       "penalties": 1,
-      "iterations": 393,
+      "iterations": 814,
       "ms": 300
     },
     {
@@ -95,22 +95,22 @@
       "particles": 15,
       "penalties": 0,
       "iterations": 7,
-      "ms": 13
+      "ms": 14
     },
     {
       "recipe": "2-2-s",
       "targets": 57,
       "particles": 17,
       "penalties": 1,
-      "iterations": 464,
+      "iterations": 1065,
       "ms": 300
     },
     {
       "recipe": "2b-1-a",
       "targets": 68,
-      "particles": 24,
+      "particles": 23,
       "penalties": 7,
-      "iterations": 342,
+      "iterations": 951,
       "ms": 300
     },
     {
@@ -118,7 +118,7 @@
       "targets": 66,
       "particles": 23,
       "penalties": 8,
-      "iterations": 366,
+      "iterations": 543,
       "ms": 300
     },
     {
@@ -126,15 +126,15 @@
       "targets": 40,
       "particles": 19,
       "penalties": 10,
-      "iterations": 420,
+      "iterations": 619,
       "ms": 300
     },
     {
       "recipe": "2b-1-n",
       "targets": 55,
-      "particles": 21,
+      "particles": 20,
       "penalties": 8,
-      "iterations": 332,
+      "iterations": 666,
       "ms": 300
     },
     {
@@ -142,7 +142,7 @@
       "targets": 90,
       "particles": 30,
       "penalties": 13,
-      "iterations": 246,
+      "iterations": 295,
       "ms": 300
     },
     {
@@ -150,7 +150,7 @@
       "targets": 65,
       "particles": 16,
       "penalties": 2,
-      "iterations": 525,
+      "iterations": 691,
       "ms": 300
     },
     {
@@ -158,7 +158,7 @@
       "targets": 43,
       "particles": 11,
       "penalties": 3,
-      "iterations": 556,
+      "iterations": 609,
       "ms": 300
     },
     {
@@ -166,7 +166,7 @@
       "targets": 51,
       "particles": 15,
       "penalties": 1,
-      "iterations": 570,
+      "iterations": 921,
       "ms": 300
     },
     {
@@ -174,23 +174,23 @@
       "targets": 67,
       "particles": 22,
       "penalties": 2,
-      "iterations": 232,
+      "iterations": 625,
       "ms": 300
     },
     {
       "recipe": "3-2-a",
       "targets": 66,
       "particles": 22,
-      "penalties": 8,
-      "iterations": 179,
+      "penalties": 7,
+      "iterations": 407,
       "ms": 300
     },
     {
       "recipe": "3-2-i",
       "targets": 66,
       "particles": 24,
-      "penalties": 10,
-      "iterations": 183,
+      "penalties": 9,
+      "iterations": 270,
       "ms": 300
     },
     {
@@ -199,22 +199,22 @@
       "particles": 10,
       "penalties": 0,
       "iterations": 418,
-      "ms": 270
+      "ms": 137
     },
     {
       "recipe": "3-2-n",
       "targets": 62,
       "particles": 20,
       "penalties": 7,
-      "iterations": 252,
+      "iterations": 582,
       "ms": 300
     },
     {
       "recipe": "3-2-s",
       "targets": 72,
       "particles": 26,
-      "penalties": 7,
-      "iterations": 228,
+      "penalties": 6,
+      "iterations": 476,
       "ms": 300
     },
     {
@@ -222,7 +222,7 @@
       "targets": 51,
       "particles": 21,
       "penalties": 4,
-      "iterations": 276,
+      "iterations": 589,
       "ms": 300
     },
     {
@@ -230,7 +230,7 @@
       "targets": 59,
       "particles": 20,
       "penalties": 4,
-      "iterations": 239,
+      "iterations": 489,
       "ms": 300
     },
     {
@@ -238,31 +238,31 @@
       "targets": 31,
       "particles": 14,
       "penalties": 6,
-      "iterations": 290,
+      "iterations": 642,
       "ms": 300
     },
     {
       "recipe": "4-1-s",
       "targets": 81,
-      "particles": 26,
-      "penalties": 7,
-      "iterations": 257,
+      "particles": 25,
+      "penalties": 6,
+      "iterations": 535,
       "ms": 300
     },
     {
       "recipe": "4-2-a",
       "targets": 22,
       "particles": 22,
-      "penalties": 8,
-      "iterations": 186,
+      "penalties": 7,
+      "iterations": 546,
       "ms": 300
     },
     {
       "recipe": "4-2-i",
       "targets": 58,
-      "particles": 19,
-      "penalties": 4,
-      "iterations": 288,
+      "particles": 18,
+      "penalties": 3,
+      "iterations": 762,
       "ms": 300
     },
     {
@@ -270,15 +270,15 @@
       "targets": 33,
       "particles": 12,
       "penalties": 2,
-      "iterations": 432,
+      "iterations": 1204,
       "ms": 300
     },
     {
       "recipe": "4-2-n",
       "targets": 43,
-      "particles": 20,
-      "penalties": 6,
-      "iterations": 261,
+      "particles": 18,
+      "penalties": 5,
+      "iterations": 774,
       "ms": 300
     },
     {
@@ -286,7 +286,7 @@
       "targets": 79,
       "particles": 22,
       "penalties": 5,
-      "iterations": 190,
+      "iterations": 342,
       "ms": 300
     },
     {
@@ -294,31 +294,31 @@
       "targets": 50,
       "particles": 21,
       "penalties": 5,
-      "iterations": 312,
+      "iterations": 655,
       "ms": 300
     },
     {
       "recipe": "4-3-i",
       "targets": 72,
       "particles": 21,
-      "penalties": 8,
-      "iterations": 266,
+      "penalties": 6,
+      "iterations": 627,
       "ms": 300
     },
     {
       "recipe": "4-3-m",
       "targets": 47,
-      "particles": 16,
-      "penalties": 7,
-      "iterations": 299,
+      "particles": 15,
+      "penalties": 6,
+      "iterations": 676,
       "ms": 300
     },
     {
       "recipe": "4-3-s",
       "targets": 90,
-      "particles": 30,
-      "penalties": 14,
-      "iterations": 135,
+      "particles": 28,
+      "penalties": 11,
+      "iterations": 225,
       "ms": 300
     },
     {
@@ -327,15 +327,15 @@
       "particles": 13,
       "penalties": 0,
       "iterations": 1,
-      "ms": 8
+      "ms": 13
     },
     {
       "recipe": "4-3-n",
       "targets": 111,
       "particles": 30,
       "penalties": 75,
-      "iterations": 124,
-      "ms": 300
+      "iterations": 261,
+      "ms": 301
     }
   ]
 }
