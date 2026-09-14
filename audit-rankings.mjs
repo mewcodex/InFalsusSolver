@@ -22,6 +22,7 @@ function verify(r,x){const independentResult=independent(r,x.placements),s=theor
 // graph connectivity, area activation, penalties and stat arithmetic.
 for(const row of ranking.rows){const r=d.recipes.find(r=>r.id===row.id),stats=verify(r,row.result);assert.equal(stats.power+stats.fortitude,row.result.value);const upper=recipeStats(r);assert.equal(row.upper,upper.power+upper.fortitude);}
 console.log('Independent audit: all 42 saved totals, activation and penalties agree.');
+if(process.argv.includes('--verify-only'))process.exit(0);
 const hero=ranking.rows.find(r=>r.id===72),heroRecipe=d.recipes.find(r=>r.id===72),fixture=JSON.parse(fs.readFileSync('fixtures/hero-required.json'));
 const heroStats=verify(heroRecipe,fixture);assert.equal(heroStats.power+heroStats.fortitude,83916);if(hero.result.value<83916)hero.result={...fixture,objective:'stats',stats:heroStats,value:83916,provenOptimal:false};
 const changes=[];

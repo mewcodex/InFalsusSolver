@@ -1,5 +1,5 @@
-import {conditionPlans,satisfies} from './conditions.js?v=range-20260914-1';
-import {theoreticalStats,recipeStats} from './card-stats.js';
+import {conditionPlans,satisfies} from '../dist/conditions.js?v=range-20260914-1';
+import {theoreticalStats,recipeStats} from '../dist/card-stats.js';
 // Axial hex coordinates. Placement anchors refer to the original serialized origin.
 export const key=c=>c[0]+','+c[1];
 const dirs=[[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
@@ -69,6 +69,29 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
   if(elite.length>8)elite.pop();
  };
  const accept=ps=>{const s=score(recipe,skills,ps);remember(ps,s);onCandidate?.({placements:ps,score:s});if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
+ // Bounded branch-and-bound repair: keep most pieces fixed and enumerate a small patch.
+ const exactRepair=()=>{
+  const source=best.placements.filter(p=>p.cover?.length),anchor=source[Math.floor(rand()*source.length)].cells[0];
+  const distance=p=>Math.min(...p.cells.map(c=>Math.max(Math.abs(c[0]-anchor[0]),Math.abs(c[1]-anchor[1]),Math.abs(c[0]+c[1]-anchor[0]-anchor[1]))));
+  const ordered=source.slice().sort((a,b)=>distance(a)-distance(b)),removed=new Set(ordered.slice(0,Math.min(5,ordered.length))),fixed=source.filter(p=>!removed.has(p));
+  const counts=new Uint16Array(targetCells.length),occ=new Uint16Array(geometry.size),ps=fixed.slice();
+  let unsafe=0,overlap=0,remaining=targetCells.length,nodes=0;
+  const add=(p,delta)=>{unsafe+=delta*Number(p.unsafe);for(const i of p.cover){if(delta>0&&!counts[i])remaining--;counts[i]+=delta;if(delta<0&&!counts[i])remaining++;}for(const i of geometry.lookup.get(p)){if(delta>0&&occ[i]===1)overlap++;if(delta<0&&occ[i]===2)overlap--;occ[i]+=delta;}};
+  fixed.forEach(p=>add(p,1));
+  const effects=recipe.areas.flatMap(a=>a.effects),forgive=t=>effects.filter(e=>e.type===t).reduce((n,e)=>n+Math.max(0,Number(e.params[0])),0);
+  const maxLimit=Math.min(recipe.maxIota,skills[2])+effects.filter(e=>e.type===15).reduce((n,e)=>n+Math.max(0,-Number(e.params[0])),0),outAllowance=skills[3]+forgive(9),overlapAllowance=skills[4]+forgive(10);
+  const stop=Math.min(deadline,Date.now()+12),maxPieces=source.length+1;
+  function visit(){
+   if(++nodes>1200||Date.now()>=stop)return;
+   const lower=Math.max(0,ps.length-maxLimit)+Math.max(0,unsafe-outAllowance)+Math.max(0,overlap-overlapAllowance);
+   if(lower>best.score.total)return;
+   if(!remaining){accept(ps);return;}if(ps.length>=maxPieces)return;
+   let ti=-1;for(let i=0;i<counts.length;i++)if(!counts[i]&&(ti<0||byTarget[i].length<byTarget[ti].length))ti=i;
+   const choices=byTarget[ti].map(j=>{const p=out[j];return {p,rank:p.cover.reduce((n,i)=>n+Number(!counts[i]),0)-geometry.cells[j].reduce((n,i)=>n+Number(occ[i]>0),0)*.8-Number(p.unsafe)*.5};}).sort((a,b)=>b.rank-a.rank).slice(0,16);
+   for(const {p} of choices){ps.push(p);add(p,1);visit();add(p,-1);ps.pop();if(nodes>1200||Date.now()>=stop)break;}
+  }
+  visit();
+ };
  report({type:'progress',result:best,iterations});
  while(Date.now()<deadline&&best.score.total>0){
   let ps=[],covered=new Uint8Array(targetCells.length),occ=new Uint16Array(geometry.size),remaining=targetCells.length;
@@ -98,6 +121,7 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
    for(const k of new Set(path)){const c=k.split(',').map(Number),color=recipe.cells.find(x=>key(x)===k)?.[2],p=iotas.find(x=>x.size===1&&x.color===(color>0&&color<6?color:recipe.color));trial.push({id:p.id,internal:p.internal,color:p.color,tier:p.tier,rotation:0,q:c[0],r:c[1],cells:[c],cover:[]})}
    if(!path.length)break;accept(trial);
   }}
+  if(searchStrategy==='exact'&&iterations%8===0&&best.score.total>0)exactRepair();
   iterations++;if(Date.now()-last>500){report({type:'progress',result:best,iterations});last=Date.now()}
  }
  best={...best,provenOptimal:best.score.total===0,iterations,elapsedMs:Date.now()-begin};report({type:'done',result:best,iterations});return best;
