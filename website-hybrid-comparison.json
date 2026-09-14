@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 60,
+    "name": "永远陪在你身旁",
+    "mode": "unrestricted",
+    "initial": 221778,
+    "before": 221778,
+    "after": 221778,
+    "oldMs": 4,
+    "newMs": 2
+  },
+  {
+    "id": 60,
+    "name": "永远陪在你身旁",
+    "mode": "utility-0",
+    "initial": 221778,
+    "before": 221778,
+    "after": 221778,
+    "oldMs": 4,
+    "newMs": 4
+  },
+  {
+    "id": 60,
+    "name": "永远陪在你身旁",
+    "mode": "utility-1",
+    "initial": 185814,
+    "before": 197802,
+    "after": 197802,
+    "oldMs": 1076,
+    "newMs": 1000
+  },
+  {
+    "id": 58,
+    "name": "自惭形秽",
+    "mode": "unrestricted",
+    "initial": 149850,
+    "before": 149850,
+    "after": 149850,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 58,
+    "name": "自惭形秽",
+    "mode": "utility-0",
+    "initial": 149850,
+    "before": 149850,
+    "after": 149850,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 61,
+    "name": "丑陋的告白",
+    "mode": "unrestricted",
+    "initial": 135864,
+    "before": 135864,
+    "after": 135864,
+    "oldMs": 1020,
+    "newMs": 1001
+  },
+  {
+    "id": 61,
+    "name": "丑陋的告白",
+    "mode": "utility-1",
+    "initial": 119880,
+    "before": 127872,
+    "after": 127872,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 61,
+    "name": "丑陋的告白",
+    "mode": "utility-2",
+    "initial": 79920,
+    "before": 87912,
+    "after": 95904,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 61,
+    "name": "丑陋的告白",
+    "mode": "utility-3",
+    "initial": 49728,
+    "before": 71928,
+    "after": 79920,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 59,
+    "name": "追寻飘渺的身影",
+    "mode": "unrestricted",
+    "initial": 131868,
+    "before": 131868,
+    "after": 131868,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 59,
+    "name": "追寻飘渺的身影",
+    "mode": "utility-0",
+    "initial": 131868,
+    "before": 131868,
+    "after": 131868,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 63,
+    "name": "本色",
+    "mode": "unrestricted",
+    "initial": 131868,
+    "before": 131868,
+    "after": 131868,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 63,
+    "name": "本色",
+    "mode": "utility-0",
+    "initial": 131868,
+    "before": 131868,
+    "after": 131868,
+    "oldMs": 10,
+    "newMs": 7
+  },
+  {
+    "id": 63,
+    "name": "本色",
+    "mode": "utility-1",
+    "initial": 95904,
+    "before": 107892,
+    "after": 107892,
+    "oldMs": 1003,
+    "newMs": 1000
+  },
+  {
+    "id": 42,
+    "name": "褪作黑白",
+    "mode": "unrestricted",
+    "initial": 129870,
+    "before": 129870,
+    "after": 129870,
+    "oldMs": 1003,
+    "newMs": 1000
+  },
+  {
+    "id": 42,
+    "name": "褪作黑白",
+    "mode": "utility-0",
+    "initial": 129870,
+    "before": 129870,
+    "after": 129870,
+    "oldMs": 1009,
+    "newMs": 1000
+  },
+  {
+    "id": 42,
+    "name": "褪作黑白",
+    "mode": "utility-1",
+    "initial": 106560,
+    "before": 111888,
+    "after": 106560,
+    "oldMs": 1031,
+    "newMs": 1000
+  },
+  {
+    "id": 42,
+    "name": "褪作黑白",
+    "mode": "utility-2",
+    "initial": 89910,
+    "before": 111888,
+    "after": 111888,
+    "oldMs": 1003,
+    "newMs": 1000
+  },
+  {
+    "id": 7,
+    "name": "班花",
+    "mode": "unrestricted",
+    "initial": 125874,
+    "before": 125874,
+    "after": 125874,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 7,
+    "name": "班花",
+    "mode": "utility-0",
+    "initial": 125874,
+    "before": 125874,
+    "after": 125874,
+    "oldMs": 3,
+    "newMs": 2
+  },
+  {
+    "id": 62,
+    "name": "自我的价值",
+    "mode": "unrestricted",
+    "initial": 123876,
+    "before": 123876,
+    "after": 123876,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 62,
+    "name": "自我的价值",
+    "mode": "utility-0",
+    "initial": 123876,
+    "before": 123876,
+    "after": 123876,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 62,
+    "name": "自我的价值",
+    "mode": "utility-1",
+    "initial": 108336,
+    "before": 108336,
+    "after": 108336,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 62,
+    "name": "自我的价值",
+    "mode": "utility-2",
+    "initial": 103896,
+    "before": 103896,
+    "after": 103896,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 15,
+    "name": "穿行于城市中",
+    "mode": "unrestricted",
+    "initial": 118881,
+    "before": 118881,
+    "after": 118881,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 15,
+    "name": "穿行于城市中",
+    "mode": "utility-0",
+    "initial": 118881,
+    "before": 118881,
+    "after": 118881,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 15,
+    "name": "穿行于城市中",
+    "mode": "utility-1",
+    "initial": 104895,
+    "before": 111888,
+    "after": 104895,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 13,
+    "name": "崭新黎明",
+    "mode": "unrestricted",
+    "initial": 113886,
+    "before": 113886,
+    "after": 113886,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 13,
+    "name": "崭新黎明",
+    "mode": "utility-0",
+    "initial": 113886,
+    "before": 113886,
+    "after": 113886,
+    "oldMs": 5,
+    "newMs": 5
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "unrestricted",
+    "initial": 113886,
+    "before": 113886,
+    "after": 113886,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "utility-0",
+    "initial": 113886,
+    "before": 113886,
+    "after": 113886,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "utility-1",
+    "initial": 95904,
+    "before": 105894,
+    "after": 95904,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "utility-2",
+    "initial": 89910,
+    "before": 105894,
+    "after": 89910,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "utility-3",
+    "initial": 83916,
+    "before": 99900,
+    "after": 83916,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 64,
+    "name": "新的一天，新的决心",
+    "mode": "utility-4",
+    "initial": 83916,
+    "before": 99900,
+    "after": 95904,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 37,
+    "name": "天生的领袖",
+    "mode": "unrestricted",
+    "initial": 109890,
+    "before": 109890,
+    "after": 109890,
+    "oldMs": 1028,
+    "newMs": 1000
+  },
+  {
+    "id": 37,
+    "name": "天生的领袖",
+    "mode": "utility-0",
+    "initial": 109890,
+    "before": 109890,
+    "after": 109890,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 37,
+    "name": "天生的领袖",
+    "mode": "utility-1",
+    "initial": 76368,
+    "before": 89910,
+    "after": 76368,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 37,
+    "name": "天生的领袖",
+    "mode": "utility-2",
+    "initial": 67488,
+    "before": 73926,
+    "after": 67488,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 17,
+    "name": "日常的一丝裂痕",
+    "mode": "unrestricted",
+    "initial": 105894,
+    "before": 105894,
+    "after": 105894,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 17,
+    "name": "日常的一丝裂痕",
+    "mode": "utility-0",
+    "initial": 105894,
+    "before": 105894,
+    "after": 105894,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 17,
+    "name": "日常的一丝裂痕",
+    "mode": "utility-1",
+    "initial": 87912,
+    "before": 87912,
+    "after": 87912,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 17,
+    "name": "日常的一丝裂痕",
+    "mode": "utility-2",
+    "initial": 68376,
+    "before": 87912,
+    "after": 87912,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 17,
+    "name": "日常的一丝裂痕",
+    "mode": "utility-3",
+    "initial": 64824,
+    "before": 84360,
+    "after": 84360,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 18,
+    "name": "机灵的朋友",
+    "mode": "unrestricted",
+    "initial": 105894,
+    "before": 105894,
+    "after": 105894,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 18,
+    "name": "机灵的朋友",
+    "mode": "utility-0",
+    "initial": 105894,
+    "before": 105894,
+    "after": 105894,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 18,
+    "name": "机灵的朋友",
+    "mode": "utility-1",
+    "initial": 91908,
+    "before": 91908,
+    "after": 91908,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 12,
+    "name": "心中的疑虑",
+    "mode": "unrestricted",
+    "initial": 102898,
+    "before": 102898,
+    "after": 102898,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 12,
+    "name": "心中的疑虑",
+    "mode": "utility-0",
+    "initial": 102898,
+    "before": 102898,
+    "after": 102898,
+    "oldMs": 1079,
+    "newMs": 1000
+  },
+  {
+    "id": 12,
+    "name": "心中的疑虑",
+    "mode": "utility-1",
+    "initial": 93240,
+    "before": 97903,
+    "after": 93240,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 35,
+    "name": "通往现实之路",
+    "mode": "unrestricted",
+    "initial": 102898,
+    "before": 102898,
+    "after": 102898,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 35,
+    "name": "通往现实之路",
+    "mode": "utility-1",
+    "initial": 91464,
+    "before": 91464,
+    "after": 91464,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 71,
+    "name": "毕业",
+    "mode": "unrestricted",
+    "initial": 102898,
+    "before": 102898,
+    "after": 102898,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 71,
+    "name": "毕业",
+    "mode": "utility-0",
+    "initial": 102898,
+    "before": 102898,
+    "after": 102898,
+    "oldMs": 6,
+    "newMs": 11
+  },
+  {
+    "id": 10,
+    "name": "新朋友",
+    "mode": "unrestricted",
+    "initial": 101898,
+    "before": 101898,
+    "after": 101898,
+    "oldMs": 0,
+    "newMs": 1
+  },
+  {
+    "id": 10,
+    "name": "新朋友",
+    "mode": "utility-0",
+    "initial": 101898,
+    "before": 101898,
+    "after": 101898,
+    "oldMs": 1,
+    "newMs": 5
+  },
+  {
+    "id": 65,
+    "name": "混沌的王座",
+    "mode": "unrestricted",
+    "initial": 101232,
+    "before": 101232,
+    "after": 101232,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 65,
+    "name": "混沌的王座",
+    "mode": "utility-0",
+    "initial": 101232,
+    "before": 101232,
+    "after": 101232,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 65,
+    "name": "混沌的王座",
+    "mode": "utility-1",
+    "initial": 99900,
+    "before": 99900,
+    "after": 99900,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 65,
+    "name": "混沌的王座",
+    "mode": "utility-2",
+    "initial": 78144,
+    "before": 99900,
+    "after": 99900,
+    "oldMs": 1078,
+    "newMs": 1000
+  },
+  {
+    "id": 65,
+    "name": "混沌的王座",
+    "mode": "utility-3",
+    "initial": 75924,
+    "before": 88800,
+    "after": 88800,
+    "oldMs": 1000,
+    "newMs": 1001
+  },
+  {
+    "id": 40,
+    "name": "天之枷，地之锁",
+    "mode": "unrestricted",
+    "initial": 100899,
+    "before": 100899,
+    "after": 100899,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 40,
+    "name": "天之枷，地之锁",
+    "mode": "utility-0",
+    "initial": 100899,
+    "before": 100899,
+    "after": 100899,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 40,
+    "name": "天之枷，地之锁",
+    "mode": "utility-1",
+    "initial": 71928,
+    "before": 78144,
+    "after": 71928,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 40,
+    "name": "天之枷，地之锁",
+    "mode": "utility-2",
+    "initial": 55944,
+    "before": 57720,
+    "after": 55944,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 40,
+    "name": "天之枷，地之锁",
+    "mode": "utility-3",
+    "initial": 45954,
+    "before": 47064,
+    "after": 47064,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 16,
+    "name": "非日常服装",
+    "mode": "unrestricted",
+    "initial": 93906,
+    "before": 93906,
+    "after": 93906,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 16,
+    "name": "非日常服装",
+    "mode": "utility-0",
+    "initial": 93906,
+    "before": 93906,
+    "after": 93906,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 16,
+    "name": "非日常服装",
+    "mode": "utility-1",
+    "initial": 85914,
+    "before": 86913,
+    "after": 85914,
+    "oldMs": 1001,
+    "newMs": 1000
+  },
+  {
+    "id": 16,
+    "name": "非日常服装",
+    "mode": "utility-2",
+    "initial": 57942,
+    "before": 86913,
+    "after": 83472,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 16,
+    "name": "非日常服装",
+    "mode": "utility-3",
+    "initial": 57942,
+    "before": 86913,
+    "after": 83472,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 66,
+    "name": "痛楚与憎恨",
+    "mode": "unrestricted",
+    "initial": 93906,
+    "before": 93906,
+    "after": 93906,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 66,
+    "name": "痛楚与憎恨",
+    "mode": "utility-0",
+    "initial": 93906,
+    "before": 93906,
+    "after": 93906,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 66,
+    "name": "痛楚与憎恨",
+    "mode": "utility-1",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 66,
+    "name": "痛楚与憎恨",
+    "mode": "utility-2",
+    "initial": 79920,
+    "before": 79920,
+    "after": 79920,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 9,
+    "name": "夏日的最后时光",
+    "mode": "unrestricted",
+    "initial": 90576,
+    "before": 90576,
+    "after": 90576,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 9,
+    "name": "夏日的最后时光",
+    "mode": "utility-0",
+    "initial": 90576,
+    "before": 90576,
+    "after": 90576,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 33,
+    "name": "必要的武力",
+    "mode": "unrestricted",
+    "initial": 89910,
+    "before": 89910,
+    "after": 89910,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 33,
+    "name": "必要的武力",
+    "mode": "utility-0",
+    "initial": 89910,
+    "before": 89910,
+    "after": 89910,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 33,
+    "name": "必要的武力",
+    "mode": "utility-1",
+    "initial": 77922,
+    "before": 77922,
+    "after": 77922,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 33,
+    "name": "必要的武力",
+    "mode": "utility-2",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 67,
+    "name": "不屈之力",
+    "mode": "unrestricted",
+    "initial": 87912,
+    "before": 87912,
+    "after": 87912,
+    "oldMs": 0,
+    "newMs": 1
+  },
+  {
+    "id": 67,
+    "name": "不屈之力",
+    "mode": "utility-0",
+    "initial": 87912,
+    "before": 87912,
+    "after": 87912,
+    "oldMs": 54,
+    "newMs": 52
+  },
+  {
+    "id": 67,
+    "name": "不屈之力",
+    "mode": "utility-1",
+    "initial": 53280,
+    "before": 59940,
+    "after": 59940,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 5,
+    "name": "无序的指挥者",
+    "mode": "unrestricted",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 5,
+    "name": "无序的指挥者",
+    "mode": "utility-1",
+    "initial": 63936,
+    "before": 74592,
+    "after": 74592,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 6,
+    "name": "脱离常轨的自由",
+    "mode": "unrestricted",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 0,
+    "newMs": 1
+  },
+  {
+    "id": 6,
+    "name": "脱离常轨的自由",
+    "mode": "utility-1",
+    "initial": 68376,
+    "before": 69264,
+    "after": 69264,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 11,
+    "name": "混浊的大海",
+    "mode": "unrestricted",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 11,
+    "name": "混浊的大海",
+    "mode": "utility-0",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 2,
+    "newMs": 1
+  },
+  {
+    "id": 11,
+    "name": "混浊的大海",
+    "mode": "utility-1",
+    "initial": 78921,
+    "before": 78921,
+    "after": 78921,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 39,
+    "name": "重归于好的拥抱",
+    "mode": "unrestricted",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 0,
+    "newMs": 1
+  },
+  {
+    "id": 39,
+    "name": "重归于好的拥抱",
+    "mode": "utility-0",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 14,
+    "newMs": 12
+  },
+  {
+    "id": 39,
+    "name": "重归于好的拥抱",
+    "mode": "utility-1",
+    "initial": 74592,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 181,
+    "newMs": 193
+  },
+  {
+    "id": 72,
+    "name": "英雄",
+    "mode": "unrestricted",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 72,
+    "name": "英雄",
+    "mode": "utility-0",
+    "initial": 83916,
+    "before": 83916,
+    "after": 83916,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 72,
+    "name": "英雄",
+    "mode": "utility-1",
+    "initial": 40848,
+    "before": 40848,
+    "after": 40848,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 72,
+    "name": "英雄",
+    "mode": "utility-2",
+    "initial": 39960,
+    "before": 39960,
+    "after": 39960,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 72,
+    "name": "英雄",
+    "mode": "utility-3",
+    "initial": 30192,
+    "before": 30192,
+    "after": 30192,
+    "oldMs": 1060,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "unrestricted",
+    "initial": 81918,
+    "before": 81918,
+    "after": 81918,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "utility-0",
+    "initial": 81918,
+    "before": 81918,
+    "after": 81918,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "utility-1",
+    "initial": 35520,
+    "before": 35520,
+    "after": 35520,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "utility-2",
+    "initial": 34632,
+    "before": 38184,
+    "after": 34632,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "utility-3",
+    "initial": 24864,
+    "before": 47952,
+    "after": 49728,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 38,
+    "name": "羁绊的失落花园",
+    "mode": "utility-4",
+    "initial": 24864,
+    "before": 31968,
+    "after": 24864,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 70,
+    "name": "无双",
+    "mode": "unrestricted",
+    "initial": 81918,
+    "before": 81918,
+    "after": 81918,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 70,
+    "name": "无双",
+    "mode": "utility-0",
+    "initial": 81918,
+    "before": 81918,
+    "after": 81918,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 70,
+    "name": "无双",
+    "mode": "utility-1",
+    "initial": 57942,
+    "before": 57942,
+    "after": 57942,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 70,
+    "name": "无双",
+    "mode": "utility-2",
+    "initial": 44400,
+    "before": 44400,
+    "after": 44400,
+    "oldMs": 1001,
+    "newMs": 1000
+  },
+  {
+    "id": 34,
+    "name": "片刻的安宁",
+    "mode": "unrestricted",
+    "initial": 81696,
+    "before": 81696,
+    "after": 81696,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 34,
+    "name": "片刻的安宁",
+    "mode": "utility-0",
+    "initial": 81696,
+    "before": 81696,
+    "after": 81696,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 34,
+    "name": "片刻的安宁",
+    "mode": "utility-1",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 19,
+    "name": "不毛之处",
+    "mode": "unrestricted",
+    "initial": 80920,
+    "before": 80920,
+    "after": 80920,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 19,
+    "name": "不毛之处",
+    "mode": "utility-0",
+    "initial": 80920,
+    "before": 80920,
+    "after": 80920,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 19,
+    "name": "不毛之处",
+    "mode": "utility-1",
+    "initial": 64824,
+    "before": 64824,
+    "after": 64824,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 19,
+    "name": "不毛之处",
+    "mode": "utility-2",
+    "initial": 52392,
+    "before": 52392,
+    "after": 52392,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 68,
+    "name": "命令",
+    "mode": "unrestricted",
+    "initial": 75924,
+    "before": 75924,
+    "after": 75924,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 68,
+    "name": "命令",
+    "mode": "utility-0",
+    "initial": 75924,
+    "before": 75924,
+    "after": 75924,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 68,
+    "name": "命令",
+    "mode": "utility-1",
+    "initial": 51504,
+    "before": 53280,
+    "after": 51504,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 68,
+    "name": "命令",
+    "mode": "utility-2",
+    "initial": 40848,
+    "before": 42624,
+    "after": 40848,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 36,
+    "name": "天穹之下",
+    "mode": "unrestricted",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 36,
+    "name": "天穹之下",
+    "mode": "utility-0",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 5,
+    "newMs": 6
+  },
+  {
+    "id": 36,
+    "name": "天穹之下",
+    "mode": "utility-1",
+    "initial": 66933,
+    "before": 66933,
+    "after": 66933,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 36,
+    "name": "天穹之下",
+    "mode": "utility-2",
+    "initial": 51948,
+    "before": 59496,
+    "after": 51948,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 36,
+    "name": "天穹之下",
+    "mode": "utility-3",
+    "initial": 44400,
+    "before": 59496,
+    "after": 44400,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "unrestricted",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 0,
+    "newMs": 1
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-0",
+    "initial": 71928,
+    "before": 71928,
+    "after": 71928,
+    "oldMs": 2,
+    "newMs": 2
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-1",
+    "initial": 66933,
+    "before": 70929,
+    "after": 70929,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-2",
+    "initial": 59496,
+    "before": 66933,
+    "after": 63048,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-3",
+    "initial": 48840,
+    "before": 62937,
+    "after": 59496,
+    "oldMs": 1012,
+    "newMs": 1000
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-4",
+    "initial": 48840,
+    "before": 62937,
+    "after": 59496,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 41,
+    "name": "窥见深渊",
+    "mode": "utility-5",
+    "initial": 39072,
+    "before": 50949,
+    "after": 49728,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 1,
+    "name": "找寻伙伴的温暖目光",
+    "mode": "unrestricted",
+    "initial": 64936,
+    "before": 64936,
+    "after": 64936,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 3,
+    "name": "凌晨四点",
+    "mode": "unrestricted",
+    "initial": 61938,
+    "before": 61938,
+    "after": 61938,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 2,
+    "name": "冷酷的督导",
+    "mode": "unrestricted",
+    "initial": 59940,
+    "before": 59940,
+    "after": 59940,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 4,
+    "name": "终焉尽头",
+    "mode": "unrestricted",
+    "initial": 59940,
+    "before": 59940,
+    "after": 59940,
+    "oldMs": 0,
+    "newMs": 0
+  },
+  {
+    "id": 14,
+    "name": "永恒记录仪",
+    "mode": "unrestricted",
+    "initial": 49950,
+    "before": 49950,
+    "after": 49950,
+    "oldMs": 1,
+    "newMs": 0
+  },
+  {
+    "id": 14,
+    "name": "永恒记录仪",
+    "mode": "utility-0",
+    "initial": 49950,
+    "before": 49950,
+    "after": 49950,
+    "oldMs": 4,
+    "newMs": 5
+  },
+  {
+    "id": 14,
+    "name": "永恒记录仪",
+    "mode": "utility-1",
+    "initial": 39960,
+    "before": 44400,
+    "after": 44400,
+    "oldMs": 1000,
+    "newMs": 1000
+  },
+  {
+    "id": 14,
+    "name": "永恒记录仪",
+    "mode": "utility-2",
+    "initial": 39960,
+    "before": 44400,
+    "after": 44400,
+    "oldMs": 1000,
+    "newMs": 1000
+  }
+]
