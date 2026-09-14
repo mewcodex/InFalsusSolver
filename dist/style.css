@@ -15,3 +15,5 @@
 .particle-option{display:flex;align-items:center;gap:6px;font-size:12px;margin:14px 0;color:#d7e6f4}.particle-option input{accent-color:#b3f5d0}
 
 .condition-filters{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.condition-filters label{font-size:12px;display:flex;align-items:center;gap:8px}.condition-filters select{padding:7px;max-width:150px}.constraint-label{font-size:11px;color:var(--muted);margin-bottom:0}
+
+header .combat-link{margin-left:0;white-space:nowrap}@media(max-width:650px){header{height:auto;min-height:80px;flex-wrap:wrap;gap:14px}header .spoiler-toggle{margin-left:auto}}
