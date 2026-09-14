@@ -1,2 +1,2 @@
-import {solve,maximizeStats,solveConstrained} from './solver.js?v=conditions-20260914-1';
-self.onmessage=({data})=>{try{(data.objective==='stats'?(data.minSlots||data.cardColor?solveConstrained:maximizeStats):solve)(data,m=>self.postMessage(m))}catch(e){self.postMessage({type:'error',message:e.message})}};
+import {solve,maximizeStats,solveConstrained} from './solver.js?v=range-20260914-1';
+self.onmessage=({data})=>{try{(data.objective==='stats'?(data.minSlots||data.cardColor||data.minRange>1?solveConstrained:maximizeStats):solve)(data,m=>self.postMessage(m))}catch(e){self.postMessage({type:'error',message:e.message})}};

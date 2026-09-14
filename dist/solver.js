@@ -1,4 +1,4 @@
-import {conditionPlans,satisfies} from './conditions.js';
+import {conditionPlans,satisfies} from './conditions.js?v=range-20260914-1';
 import {theoreticalStats,recipeStats} from './card-stats.js';
 // Axial hex coordinates. Placement anchors refer to the original serialized origin.
 export const key=c=>c[0]+','+c[1];
@@ -134,13 +134,13 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
 }
 
 export function solveConstrained(args,report=()=>{}){
- const {recipe,minSlots=0,cardColor=0}=args,plans=conditionPlans(recipe,minSlots,cardColor),start=Date.now(),deadline=start+(args.timeMs||5000);let best=null,iterations=0;
- if(!plans.length)throw Error('此配方无法满足所选特质槽或颜色要求');
- const accept=result=>{const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(recipe.cells.some(c=>(args.targets||[]).includes(key(c))&&!covered.has(c.join(','))))return;if(!satisfies(recipe,result,minSlots,cardColor))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;if(!best||value>best.value||value===best.value&&result.score.total<best.score.total){best={...result,stats,value,minSlots,cardColor};report({type:'progress',result:best,iterations})}};
+ const {recipe,minSlots=0,cardColor=0,minRange=1}=args,plans=conditionPlans(recipe,minSlots,cardColor,minRange),start=Date.now(),deadline=start+(args.timeMs||5000);let best=null,iterations=0;
+ if(!plans.length)throw Error('此配方无法满足所选特质槽、颜色或范围要求');
+ const accept=result=>{const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(recipe.cells.some(c=>(args.targets||[]).includes(key(c))&&!covered.has(c.join(','))))return;if(!satisfies(recipe,result,minSlots,cardColor,minRange))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;if(!best||value>best.value||value===best.value&&result.score.total<best.score.total){best={...result,stats,value,minSlots,cardColor,minRange};report({type:'progress',result:best,iterations})}};
  if(args.initialSolution&&args.initialSolution.placements.every(p=>args.iotas.some(i=>i.id===p.id&&(!args.excludeTier3||i.tier!==3))))accept({...args.initialSolution,score:score(recipe,args.skills,args.initialSolution.placements)});
  for(let n=0;Date.now()<deadline;n++){
   const plan=plans[n%plans.length],targets=[...new Set([...(args.targets||[]),...plan.flatMap(i=>recipe.areas[i].cells.map(key))])];
   maximizeStats({...args,targets,initialSolution:best||args.initialSolution,timeMs:Math.max(100,Math.min(deadline-Date.now(),Math.max(250,(args.timeMs||5000)/plans.length))),seed:(args.seed||1123)+n*937},m=>{if(m.result)accept(m.result)});iterations++;if(best?.provenOptimal)break;
  }
- if(!best)throw Error('本次搜索未找到满足槽位和颜色要求的方案');best={...best,iterations,elapsedMs:Date.now()-start};report({type:'done',result:best,iterations});return best;
+ if(!best)throw Error('本次搜索未找到满足槽位、颜色和范围要求的方案');best={...best,iterations,elapsedMs:Date.now()-start};report({type:'done',result:best,iterations});return best;
 }

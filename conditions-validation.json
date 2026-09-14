@@ -1,7 +1,7 @@
 {
   "passed": true,
   "recipes": 42,
-  "conditions": 1008,
-  "known": 328,
-  "impossible": 680
+  "conditions": 5040,
+  "known": 1050,
+  "impossible": 3990
 }
