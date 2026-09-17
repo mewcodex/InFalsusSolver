@@ -1,0 +1,32 @@
+import {cardName} from './spoilers.js';
+import {teamPreview,colors,escape} from './team-preview.js';
+import {loadoutFiles,loadoutKey} from './loadouts.js';
+const num=n=>Math.round(n).toLocaleString('zh-CN'),colorNames=['无色','红','黄','绿','蓝','紫'];
+try{
+ const choice=loadoutKey(new URLSearchParams(location.search).get('loadout'));
+ const selector=document.getElementById('team-choice');selector.value=choice;selector.onchange=()=>{const url=new URL(location.href);url.searchParams.set('loadout',selector.value);location.href=url};
+ const [team,data]=await Promise.all([loadoutFiles[choice],'data.json'].map(async p=>{const r=await fetch(p);if(!r.ok)throw Error('方案文件加载失败');return r.json()}));
+ let metrics,context,conditions;
+ const common='角色满级 · 粒子效能 999 · 谱面等级 15 · 计入联觉、阶段暴击、诅咒，忽略颜色克制。卡名不重复；技能可以跨卡重复，单卡内不重复；每张卡威力与耐力均大于 0。';
+ if(choice==='storm-score'){
+  metrics=[[num(team.result.score),'最高已知遭遇分 · CONNECT'],[team.result.minHp.toFixed(2)+'%','最低我方血量'],['100% EXACT','全 EXACT · 等物量模型']];
+  context='无常的风暴 · 以成功通关后的遭遇分数最高为目标；已计入敌方技能、红色限制、回复和生存。重新搜索与旧全 EXACT 最高分一致，不是低准确率五星方案。';
+  conditions='五阶段各按 100 次判定，采用前 80 次普通、后 20 次暴击的连续模型近似。实际谱面的阶段物量与暴击取整会改变分数；447,835 是模型分数，不是所有 15 级谱面的实测分数。';
+ }else if(choice==='balanced'){
+  metrics=[[num(team.result.score),'综合最高已知分 · CONNECT'],[num(team.result.reflectScore),'同条件 REFLECT 分数'],[team.result.finalHp.toFixed(2)+'%','最终我方血量']];
+  context='无技能等阶段敌人 · 总基础攻击 48,500、总基础防御 343,500。兼顾输出与减伤，四张技能卡覆盖全部阶段；五色联觉。';
+  conditions='全 EXACT，五阶段各 100 次判定的近似模型，敌方无技能且全 EXACT。敌方数值取无常的风暴基础总值，但移除了全部敌方技能。本方案满足 CONNECT 及 REFLECT 胜利条件。敌方攻击变化会影响回复技能收益，不能保证同一方案适用于任意敌方攻击。';
+ }else if(choice==='original'){
+  metrics=[[num(team.value),'可击败敌方总基础耐力 · 最高已知'],[num(team.perEnemyCard),'五张敌方卡均分耐力'],['5 色 × 5 阶段','全部技能范围覆盖全阶段']];
+  context='最高已知总伤解 · 优化累计伤害，不优化遭遇分数。';
+  conditions='全 EXACT，五阶段各 100 次判定；敌方无技能、五张卡基础耐力相同。不约束我方生存。总基础耐力上限表示累计打掉 100% 血条时可承受的敌方总耐力，不是五条独立血量，也不是遭遇分。';
+ }else{
+  metrics=team.samples.map(r=>[num(r.score),Math.round(r.p*100)+'% EXACT · 最低血量 '+r.minHp.toFixed(1)+'%']);
+  context='旧版两张改动方案 · 以较低 EXACT 率达到五星为目标，保留作对照，不属于最高分方案。';
+  conditions='五阶段等物量，EXACT / BREAK 均匀分布，计入无常的风暴敌方技能和生存。EXACT 比例不是通关概率；不模拟谱面自身 ±15 血条失败。';
+ }
+ document.getElementById('team-context').textContent=context;
+ const summary=document.getElementById('team-summary');summary.className='team-summary';summary.innerHTML=metrics.map(([value,label])=>`<div><strong>${escape(value)}</strong><span>${escape(label)}</span></div>`).join('');
+ document.getElementById('team-conditions').innerHTML=`<h2>计算条件</h2><p>${escape(common)}</p><p>${escape(conditions)}</p><p>最高已知可行解，未证明全局最优。<a href="rewards.html#score">查看遭遇评分公式</a>。</p>`;
+ const render=()=>{document.getElementById('team-grid').innerHTML=team.cards.map(card=>{const recipe=data.recipes.find(r=>r.id===card.id),s=card.crafting.score;return `<a class="team-card" href="index.html?team=${card.position}&loadout=${choice}"><div class="team-card-head"><p style="color:${colors[card.color]}">第 ${card.position} 阶段 · 成品${colorNames[card.color]}色</p><h2>${escape(cardName(recipe))}</h2><p>威力 ${num(card.power)} ／ 耐力 ${num(card.fortitude)}</p></div>${teamPreview(recipe,card,cardName(recipe))}<div class="team-card-body"><p>${card.slots} 特质槽 · 额外左 ${card.left}／右 ${card.right}<br>粒子 ${card.crafting.placements.length}/${s.limit} · ${s.total} 次惩罚（已计入属性）</p><ul>${card.traits.length?card.traits.map(t=>`<li>${escape(t.name)}</li>`).join(''):'<li>无装备特质</li>'}</ul><span class="open-plan">放大查看完整方案 ↗</span></div></a>`}).join('')};render();window.addEventListener('card-name-visibility',render);
+}catch(e){document.getElementById('team-summary').textContent='无法加载五卡方案：'+e.message;}
