@@ -1,0 +1,5 @@
+import {archiveDomain,retainSolution} from './solution-archive.js';
+const dbPromise=new Promise((resolve,reject)=>{const r=indexedDB.open('infalsus-solutions',1);r.onupgradeneeded=()=>r.result.createObjectStore('recipes');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
+const pending=new Map();
+export async function readArchive(id,noTier3){const db=await dbPromise;return new Promise((resolve,reject)=>{const r=db.transaction('recipes').objectStore('recipes').get(archiveDomain(id,noTier3));r.onsuccess=()=>resolve(r.result||[]);r.onerror=()=>reject(r.error)});}
+export function saveArchive(recipe,noTier3,entries){const key=archiveDomain(recipe.id,noTier3),prior=pending.get(key)||Promise.resolve();const job=prior.catch(()=>{}).then(async()=>{const db=await dbPromise;return new Promise((resolve,reject)=>{const tx=db.transaction('recipes','readwrite'),store=tx.objectStore('recipes'),r=store.get(key);r.onsuccess=()=>{const merged=r.result||[];for(const e of entries)retainSolution(recipe,merged,e.result);store.put(merged,key)};tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)});});pending.set(key,job);return job;}

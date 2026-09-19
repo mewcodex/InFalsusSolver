@@ -105,7 +105,7 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
 
 // Search reward-area combinations, evaluating the actual completed placements,
 // including accidentally activated areas and every curse penalty.
-export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=null,timeMs=5000,seed=1123,excludeTier3=false,searchStrategy='portfolio'},report=()=>{}){
+export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=null,timeMs=5000,seed=1123,excludeTier3=false,searchStrategy='portfolio',onCandidate=null},report=()=>{}){
  if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
  const begin=Date.now(),deadline=begin+Math.max(100,timeMs),full=recipe.areas.map((_,i)=>i);
  const ceiling=recipeStats(recipe),nonnegative=recipe.areas.every(a=>a.effects.every(e=>![3,4,5,6].includes(e.type)||Number(e.params[0])>=0));
@@ -130,7 +130,7 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
  const areaElite=[];
  let best=null;
- const consider=result=>{const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(requiredCells.some(c=>!covered.has(c.join(','))))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;
+ const consider=result=>{onCandidate?.(result);const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(requiredCells.some(c=>!covered.has(c.join(','))))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;
   if(searchStrategy!=='legacy'){
    const signature=result.score.activeAreas.join(','),previous=areaElite.find(x=>x.signature===signature);
    if(previous){if(value>previous.value){previous.value=value;previous.areas=result.score.activeAreas.slice();}}
