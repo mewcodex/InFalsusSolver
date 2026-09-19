@@ -1,5 +1,6 @@
 import {conditionPlans,satisfies} from './conditions.js?v=range-20260914-1';
 import {theoreticalStats,recipeStats} from './card-stats.js';
+import {hasLegalOverlap,MAX_CELL_PARTICLES} from './placement-rules.js';
 // Axial hex coordinates. Placement anchors refer to the original serialized origin.
 export const key=c=>c[0]+','+c[1];
 const dirs=[[1,0],[1,-1],[0,-1],[-1,0],[-1,1],[0,1]];
@@ -15,7 +16,8 @@ export function score(recipe,skills,placements){
  const activeAreas=[];let outForgive=skills[3],overlapForgive=skills[4],disconnectForgive=skills[5],limitReduction=0;
  recipe.areas.forEach((a,i)=>{if(a.cells.length&&a.cells.every(c=>colorCells.has(c.join(',')))){activeAreas.push(i);for(const e of a.effects){if(e.type===9)outForgive+=Number(e.params[0]);if(e.type===10)overlapForgive+=Number(e.params[0]);if(e.type===11)disconnectForgive+=Number(e.params[0]);if(e.type===15)limitReduction+=Number(e.params[0])}}});
  const limit=Math.min(recipe.maxIota,skills[2])-limitReduction,complexity=Math.max(0,placements.length-limit),unsafe=Math.max(0,unsafeCount-outForgive),overlap=Math.max(0,overlapCount-overlapForgive),disconnected=Math.max(0,roots.size-1-disconnectForgive),unanchored=roots.size-anchored.size;
- return {total:complexity+unsafe+overlap+disconnected+(unanchored?999:0),complexity,unsafe,overlap,disconnected,unanchored,limit,unsafeCount,overlapCount,components:roots.size,activeAreas};
+ const invalidOverlap=[...occupied.values()].some(ids=>ids.length>MAX_CELL_PARTICLES);
+ return {total:invalidOverlap?Infinity:complexity+unsafe+overlap+disconnected+(unanchored?999:0),complexity,unsafe,overlap,disconnected,unanchored,limit,unsafeCount,overlapCount,components:roots.size,activeAreas,...(invalidOverlap?{invalidOverlap:true}:{})};
 }
 export function candidates(recipe,iotas,targets){
  const targetCells=recipe.cells.filter(c=>targets.has(key(c))),safe=new Set(recipe.cells.map(key)),board=new Set(recipe.board.map(key)),seen=new Set(),out=[],byTarget=targetCells.map(()=>[]);
@@ -55,10 +57,23 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
  if(initialSolution?.placements?.length){
   const signature=p=>p.color+':'+p.cells.map(key).sort().join(';'),lookup=new Map(out.map(p=>[signature(p),p])),warm=[],seen=new Set(),covered=new Set();
   for(const p of initialSolution.placements){const candidate=lookup.get(signature(p));if(candidate&&!seen.has(candidate)){seen.add(candidate);warm.push(candidate);candidate.cover.forEach(i=>covered.add(i));}}
-  const repaired=clean([...warm,...initial.filter((_,i)=>!covered.has(i))]);
+  let repaired=clean([...warm,...initial.filter((_,i)=>!covered.has(i))]);
+  // Old saved layouts may violate the hard three-particle cap. Remove a large
+  // conflicting piece, refill only uncovered targets, and retain a legal seed.
+  while(!hasLegalOverlap(repaired)){
+   const owners=new Map();repaired.forEach((p,i)=>p.cells.forEach(c=>{const k=key(c);owners.set(k,[...(owners.get(k)||[]),i]);}));
+   const ids=[...owners.values()].find(a=>a.length>MAX_CELL_PARTICLES),remove=ids.find(i=>repaired[i].cells.length>1)??ids.at(-1);repaired.splice(remove,1);
+   const present=new Set(repaired.flatMap(p=>p.cover||[]));repaired=clean([...repaired,...initial.filter((_,i)=>!present.has(i))]);
+  }
   const a=score(recipe,skills,initial),b=score(recipe,skills,repaired);if(b.total<a.total||b.total===a.total&&repaired.length<initial.length)initial=repaired;
  }
  let best={placements:initial,score:score(recipe,skills,initial)},iterations=0,last=begin;
+ const observed=new Map();
+ const emitCandidate=(ps,s)=>{
+  if(!onCandidate||s.invalidOverlap)return;const area=s.activeAreas.join(','),prior=observed.get(area);
+  if(prior&&(prior.penalty<s.total||prior.penalty===s.total&&prior.count<=ps.length))return;
+  observed.set(area,{penalty:s.total,count:ps.length});onCandidate({placements:ps,score:s});
+ };
  const elite=[best],identities=new Map(out.map((p,i)=>[p,i]));
  const signature=ps=>ps.map(p=>identities.get(p)??p.cells.map(key).join(';')).sort().join('|');
  const remember=(ps,s)=>{
@@ -68,10 +83,11 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
   elite.sort((a,b)=>a.score.total-b.score.total||a.placements.length-b.placements.length);
   if(elite.length>8)elite.pop();
  };
- const accept=ps=>{const s=score(recipe,skills,ps);remember(ps,s);onCandidate?.({placements:ps,score:s});if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
+ const accept=ps=>{const s=score(recipe,skills,ps);remember(ps,s);emitCandidate(ps,s);if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
+ emitCandidate(initial,best.score);
  report({type:'progress',result:best,iterations});
  while(Date.now()<deadline&&best.score.total>0){
-  let ps=[],covered=new Uint8Array(targetCells.length),occ=new Uint16Array(geometry.size),remaining=targetCells.length;
+  let ps=[],covered=new Uint8Array(targetCells.length),occ=new Uint16Array(geometry.size),remaining=targetCells.length,blocked=false;
   if(iterations%3!==0||initialSolution&&iterations===0){const source=searchStrategy==='legacy'||iterations%4===0?best:elite[Math.floor(rand()*elite.length)];
    if(searchStrategy!=='legacy'&&iterations%2===1){
     // Destroy a contiguous patch rather than scattered pieces, then repair its targets.
@@ -83,11 +99,18 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
   while(remaining&&Date.now()<deadline){
    let ti=-1,small=Infinity;for(let i=0;i<targetCells.length;i++)if(!covered[i]){const n=byTarget[i].length*(.6+rand());if(n<small){small=n;ti=i}}
    let chosen=null,bestRank=-Infinity;
-   for(const j of byTarget[ti]){const p=out[j];let gain=0,over=0,adj=0;for(const i of p.cover)gain+=!covered[i];for(const c of geometry.cells[j]){if(occ[c])over++;else{for(const n of geometry.neighbors[c])if(occ[n]){adj++;break}}}
+   for(const j of byTarget[ti]){if(geometry.cells[j].some(c=>occ[c]>=MAX_CELL_PARTICLES))continue;const p=out[j];let gain=0,over=0,adj=0;for(const i of p.cover)gain+=!covered[i];for(const c of geometry.cells[j]){if(occ[c])over++;else{for(const n of geometry.neighbors[c])if(occ[n]){adj++;break}}}
     const rank=gain/(1+over*overlapWeight+(p.unsafe?unsafeWeight:0))+.08*adj*joinWeight+rand()*(iterations===0?.001:.4);if(rank>bestRank){bestRank=rank;chosen=p}}
+   if(!chosen){blocked=true;break;}
    ps.push(chosen);for(const i of chosen.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of geometry.lookup.get(chosen))occ[c]++;
   }
-  if(remaining)break;clean(ps);accept(ps);
+  if(blocked){iterations++;continue;}if(remaining)break;
+  // Removing a piece redundant for the selected targets may deactivate another
+  // reward area. Archive the pre-cleanup area set too, even when it loses the
+  // current objective; compare its own minimum penalty separately.
+  const beforeCleanup=onCandidate?ps.slice():null;clean(ps);
+  if(beforeCleanup&&beforeCleanup.length!==ps.length)emitCandidate(beforeCleanup,score(recipe,skills,beforeCleanup));
+  accept(ps);
   // Add connecting single cells along shortest safe paths, then keep only improvements.
   if(best.score.disconnected>0&&iterations%4===0){let trial=ps.slice();for(let attempt=0;attempt<6;attempt++){
    const prior=score(recipe,skills,trial);if(prior.disconnected===0)break;
@@ -130,7 +153,7 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296};
  const areaElite=[];
  let best=null;
- const consider=result=>{onCandidate?.(result);const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(requiredCells.some(c=>!covered.has(c.join(','))))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;
+ const consider=result=>{if(!hasLegalOverlap(result.placements))return;onCandidate?.(result);const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(requiredCells.some(c=>!covered.has(c.join(','))))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;
   if(searchStrategy!=='legacy'){
    const signature=result.score.activeAreas.join(','),previous=areaElite.find(x=>x.signature===signature);
    if(previous){if(value>previous.value){previous.value=value;previous.areas=result.score.activeAreas.slice();}}
@@ -169,7 +192,7 @@ export function maximizeStats({recipe,iotas,skills,targets=[],initialSolution=nu
 export function solveConstrained(args,report=()=>{}){
  const {recipe,minSlots=0,cardColor=0,minRange=1}=args,plans=conditionPlans(recipe,minSlots,cardColor,minRange),start=Date.now(),deadline=start+(args.timeMs||5000);let best=null,iterations=0;
  if(!plans.length)throw Error('此配方无法满足所选特质槽、颜色或范围要求');
- const accept=result=>{const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(recipe.cells.some(c=>(args.targets||[]).includes(key(c))&&!covered.has(c.join(','))))return;if(!satisfies(recipe,result,minSlots,cardColor,minRange))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;if(!best||value>best.value||value===best.value&&result.score.total<best.score.total){best={...result,stats,value,minSlots,cardColor,minRange};report({type:'progress',result:best,iterations})}};
+ const accept=result=>{if(!hasLegalOverlap(result.placements))return;const covered=new Set(result.placements.flatMap(p=>p.cells.map(c=>key(c)+','+p.color)));if(recipe.cells.some(c=>(args.targets||[]).includes(key(c))&&!covered.has(c.join(','))))return;if(!satisfies(recipe,result,minSlots,cardColor,minRange))return;const stats=theoreticalStats(recipe,result),value=stats.power+stats.fortitude;if(!best||value>best.value||value===best.value&&result.score.total<best.score.total){best={...result,stats,value,minSlots,cardColor,minRange};report({type:'progress',result:best,iterations})}};
  if(args.initialSolution&&args.initialSolution.placements.every(p=>args.iotas.some(i=>i.id===p.id&&(!args.excludeTier3||i.tier!==3))))accept({...args.initialSolution,score:score(recipe,args.skills,args.initialSolution.placements)});
  for(let n=0;Date.now()<deadline;n++){
   const plan=plans[n%plans.length],targets=[...new Set([...(args.targets||[]),...plan.flatMap(i=>recipe.areas[i].cells.map(key))])];
