@@ -27,3 +27,9 @@ node tools/audit-known-solutions.mjs
 Search callbacks also retain valid layouts before redundant target-covering pieces are removed, since that cleanup can deactivate a different bonus-area combination. The 2026-09-19 scan attempted 1,929 plans in 90 seconds, found exact-set candidates on 1,829 attempts, and expanded the nondominated archive from 269 to 380 records. All previous same-recipe capability vectors remain represented or dominated by a retained vector. The subsequent three-particle audit repaired one unique Pain layout used in three records without changing its final attributes.
 
 The leaderboard's existing condition indices and shared links remain stable. The archive is a separate, richer source for subsequent five-card searches; it is not reduced to a single total-stat winner.
+
+## 2026-09-19 ensemble update
+
+The full archive now contains 453 records. Legacy reward-beam, legacy cover repair, portfolio, and optional GRASP searches contributed additional branches; offline exploration can continue after reaching zero penalty. The online default stopping rule is unchanged. See `ensemble-search.md` for verified preservation, ranking improvements, and repeatable commands.
+
+Cross-card pruning exists **only** in `local-data/team-candidates.json`, never in this archive. It requires safe same-range/same-color replacement witnesses from at least five distinct other card identities, with further position-specific certificates. These certificates preserve an optimal representative for the stated model; they do not prove a team-search optimum.

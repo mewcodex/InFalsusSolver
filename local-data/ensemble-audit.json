@@ -1,0 +1,80 @@
+{
+  "date": "2026-09-19",
+  "archiveBefore": 380,
+  "archiveAfter": 453,
+  "archiveRun": {
+    "seconds": 180.014,
+    "counts": {
+      "legacy-reward": {
+        "attempts": 42,
+        "changes": 4,
+        "legalCandidates": 1314
+      },
+      "portfolio": {
+        "attempts": 313,
+        "changes": 19,
+        "legalCandidates": 1153
+      },
+      "grasp": {
+        "attempts": 294,
+        "changes": 17,
+        "legalCandidates": 1383
+      },
+      "legacy": {
+        "attempts": 294,
+        "changes": 13,
+        "legalCandidates": 1128
+      }
+    }
+  },
+  "subset": {
+    "sourceRecords": 266,
+    "retained": 260,
+    "removed": 6,
+    "perPosition": [
+      233,
+      246,
+      243,
+      239,
+      224
+    ]
+  },
+  "teams": {
+    "storm": {
+      "date": "2026-09-19",
+      "archiveRecords": 453,
+      "candidateVariants": 563,
+      "randomEvaluations": 12730990,
+      "singleReplacementChecks": 8876659,
+      "pairCandidateChecks": 1720579,
+      "traitChecksAfterPair": 6130,
+      "scoreUnchanged": true,
+      "globalOptimalityProven": false,
+      "value": 553707.0804519481
+    },
+    "balanced": {
+      "date": "2026-09-19",
+      "archiveRecords": 453,
+      "candidateVariants": 563,
+      "randomEvaluations": 15089258,
+      "singleReplacementChecks": 8602259,
+      "pairCandidateChecks": 1697147,
+      "traitChecksAfterPair": 13781,
+      "scoreUnchanged": true,
+      "globalOptimalityProven": false,
+      "value": 7353348.594317131
+    },
+    "damage": {
+      "date": "2026-09-19",
+      "archiveRecords": 453,
+      "candidateVariants": 563,
+      "randomEvaluations": 14888900,
+      "singleReplacementChecks": 7341517,
+      "pairCandidateChecks": 1583324,
+      "traitChecksAfterPair": 12690,
+      "scoreUnchanged": true,
+      "globalOptimalityProven": false,
+      "value": 23170058.019562505
+    }
+  }
+}

@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 area-search-state.json
 search-benchmark.json
+ensemble-search-state.json
+team-search-result.json
+storm-polished.json*

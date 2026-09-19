@@ -10,7 +10,7 @@ function preview(recipe){
 }
 
 try{
- const [ranking,data]=await Promise.all([fetch('ranking-data.json?v=ranking-audit-20260914-4').then(r=>r.json()),fetch('data.json').then(r=>r.json())]);
+ const [ranking,data]=await Promise.all([fetch('ranking-data.json?v=ensemble-20260919').then(r=>r.json()),fetch('data.json').then(r=>r.json())]);
  const allRows=ranking.rows;let rows=ranking.rows.slice().sort((a,b)=>b.result.value-a.result.value||a.id-b.id),size=6;let pages=Math.max(1,Math.ceil(rows.length/size));let page=Math.min(pages,Math.max(1,Math.floor(Number(new URLSearchParams(location.search).get('page'))||1)));
  const params=new URLSearchParams(location.search),slotControl=document.getElementById('min-slots'),colorControl=document.getElementById('card-color'),rangeControl=document.getElementById('min-range');rangeControl.value=String(Math.max(1,Math.min(5,Number(params.get('range'))||1)));slotControl.value=String(Math.max(0,Math.min(3,Number(params.get('slots'))||0)));colorControl.value=String(Math.max(0,Math.min(5,Number(params.get('color'))||0)));
  const query=()=>`page=${page}&slots=${slotControl.value}&color=${colorControl.value}&range=${rangeControl.value}`;

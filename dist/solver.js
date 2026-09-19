@@ -45,7 +45,7 @@ function compileGeometry(prepared){
  compiled={cells,neighbors,size:coords.length,lookup:new Map(prepared.out.map((p,i)=>[p,cells[i]]))};
  geometryCache.set(prepared,compiled);return compiled;
 }
-export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false,initialSolution=null,preparedCandidates=null,onCandidate=null,searchStrategy='legacy'},report=()=>{}){
+export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,excludeTier3=false,initialSolution=null,preparedCandidates=null,onCandidate=null,searchStrategy='legacy',exploreAfterZero=false},report=()=>{}){
  if(excludeTier3)iotas=iotas.filter(p=>p.tier!==3);
  const begin=Date.now(),deadline=begin+Math.max(100,timeMs),targetSet=new Set(targets),prepared=preparedCandidates||candidates(recipe,iotas,targetSet),{out,byTarget,targetCells}=prepared;
  if(!targetCells.length)throw Error('没有有效目标');if(byTarget.some(a=>!a.length))throw Error('某些目标没有合法粒子覆盖');
@@ -86,7 +86,7 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
  const accept=ps=>{const s=score(recipe,skills,ps);remember(ps,s);emitCandidate(ps,s);if(s.total<best.score.total||s.total===best.score.total&&ps.length<best.placements.length){best={placements:ps.slice(),score:s};return true}return false};
  emitCandidate(initial,best.score);
  report({type:'progress',result:best,iterations});
- while(Date.now()<deadline&&best.score.total>0){
+ while(Date.now()<deadline&&(best.score.total>0||exploreAfterZero)){
   let ps=[],covered=new Uint8Array(targetCells.length),occ=new Uint16Array(geometry.size),remaining=targetCells.length,blocked=false;
   if(iterations%3!==0||initialSolution&&iterations===0){const source=searchStrategy==='legacy'||iterations%4===0?best:elite[Math.floor(rand()*elite.length)];
    if(searchStrategy!=='legacy'&&iterations%2===1){
@@ -98,9 +98,10 @@ export function solve({recipe,iotas,skills,targets,timeMs=5000,seed=1123,exclude
   const overlapWeight=.15+rand()*1.5,unsafeWeight=.15+rand()*2,joinWeight=rand()*.8;
   while(remaining&&Date.now()<deadline){
    let ti=-1,small=Infinity;for(let i=0;i<targetCells.length;i++)if(!covered[i]){const n=byTarget[i].length*(.6+rand());if(n<small){small=n;ti=i}}
-   let chosen=null,bestRank=-Infinity;
+   let chosen=null,bestRank=-Infinity;const shortlist=[];
    for(const j of byTarget[ti]){if(geometry.cells[j].some(c=>occ[c]>=MAX_CELL_PARTICLES))continue;const p=out[j];let gain=0,over=0,adj=0;for(const i of p.cover)gain+=!covered[i];for(const c of geometry.cells[j]){if(occ[c])over++;else{for(const n of geometry.neighbors[c])if(occ[n]){adj++;break}}}
-    const rank=gain/(1+over*overlapWeight+(p.unsafe?unsafeWeight:0))+.08*adj*joinWeight+rand()*(iterations===0?.001:.4);if(rank>bestRank){bestRank=rank;chosen=p}}
+    const rank=gain/(1+over*overlapWeight+(p.unsafe?unsafeWeight:0))+.08*adj*joinWeight+rand()*(iterations===0?.001:.4);if(rank>bestRank){bestRank=rank;chosen=p}if(searchStrategy==='grasp')shortlist.push({p,rank});}
+   if(searchStrategy==='grasp'&&shortlist.length){shortlist.sort((a,b)=>b.rank-a.rank);const cutoff=bestRank-Math.abs(bestRank)*(.05+rand()*.2),pool=shortlist.slice(0,4).filter(x=>x.rank>=cutoff);chosen=pool[Math.floor(rand()*pool.length)].p;}
    if(!chosen){blocked=true;break;}
    ps.push(chosen);for(const i of chosen.cover)if(!covered[i]){covered[i]=1;remaining--}for(const c of geometry.lookup.get(chosen))occ[c]++;
   }
