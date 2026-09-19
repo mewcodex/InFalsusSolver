@@ -1,6 +1,7 @@
 import fs from 'node:fs';
-import {V,T,prepare,fastValue,simulate,stateFromCards} from './storm-event-model.mjs';
-const [source,output,seconds='120']=process.argv.slice(2),start=Date.now(),deadline=start+Number(seconds)*1000;
+import {V,T,prepareFor,evaluatePrepared,stateFromCards} from './team-model.mjs';
+const [source,output,seconds='120',mode='storm']=process.argv.slice(2),start=Date.now(),deadline=start+Number(seconds)*1000;
+const prepare=s=>prepareFor(s,mode),fastValue=p=>evaluatePrepared(p,mode),simulate=p=>evaluatePrepared(p,mode,true);
 let state=stateFromCards(JSON.parse(fs.readFileSync(source)).cards),best=fastValue(prepare(state)),evaluations=0;
 const copy=s=>({cards:s.cards.slice(),skills:s.skills.slice()});
 function value(s){evaluations++;return fastValue(prepare(s));}
@@ -25,7 +26,7 @@ function improveTraits(s,positions=[0,1,2,3,4]){
   }
   return v;
 }
-const save=(completed=false)=>fs.writeFileSync(output,JSON.stringify({mode:'storm',state,value:best,result:simulate(prepare(state)),search:{method:'all card replacements with coordinate trait/order optimization; top-24 paired replacements; repeated until budget',completed,evaluations,seconds:(Date.now()-start)/1000,globalOptimalityProven:false},cards:state.cards.map((i,p)=>({...V[i],position:p+1,traits:state.skills.slice(p*3,p*3+V[i].slots).map(t=>T[t])}))}));
+const save=(completed=false)=>fs.writeFileSync(output,JSON.stringify({mode,state,value:best,result:simulate(prepare(state)),search:{method:'all card replacements with coordinate trait/order optimization; top-24 paired replacements; repeated until budget',completed,evaluations,seconds:(Date.now()-start)/1000,globalOptimalityProven:false},cards:state.cards.map((i,p)=>({...V[i],position:p+1,traits:state.skills.slice(p*3,p*3+V[i].slots).map(t=>T[t])}))}));
 for(let pass=0;Date.now()<deadline;pass++){
   const prior=best,pools=[];
   best=improveTraits(state);

@@ -1,4 +1,4 @@
-import {archiveDomain,retainSolution} from './solution-archive.js';
+import {archiveDomain,retainSolution} from './solution-archive.js?v=exact-range-22894';
 import {hasLegalOverlap} from './placement-rules.js';
 const dbPromise=new Promise((resolve,reject)=>{const r=indexedDB.open('infalsus-solutions',1);r.onupgradeneeded=()=>r.result.createObjectStore('recipes');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
 const pending=new Map();

@@ -1,0 +1,23 @@
+[
+  {
+    "mode": "storm",
+    "before": 532659.3883237918,
+    "after": 532659.3883237918,
+    "improved": false,
+    "percent": 0
+  },
+  {
+    "mode": "balanced",
+    "before": 7353348.594317133,
+    "after": 7500082.2045394005,
+    "improved": true,
+    "percent": 1.9954665325627063
+  },
+  {
+    "mode": "damage",
+    "before": 23170058.0195625,
+    "after": 23170058.0195625,
+    "improved": false,
+    "percent": 0
+  }
+]

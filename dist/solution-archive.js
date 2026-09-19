@@ -4,7 +4,9 @@ import {hasLegalOverlap} from './placement-rules.js';
 export const areaKey=result=>[...new Set(result.score.activeAreas)].sort((a,b)=>a-b).join(',');
 export function dominates(a,b){
  if(!Number.isInteger(a.recipeId)||a.recipeId!==b.recipeId)return false;
- const fields=['power','fortitude','left','right','slots'];
+ // Range is not monotone for outside-range and boundary traits.
+ if(a.left!==b.left||a.right!==b.right)return false;
+ const fields=['power','fortitude','slots'];
  return fields.every(k=>a[k]>=b[k])&&b.colors.every(c=>a.colors.includes(c))&&(fields.some(k=>a[k]>b[k])||a.colors.some(c=>!b.colors.includes(c)));
 }
 export function makeRecord(recipe,result){const stats=theoreticalStats(recipe,result),f=features(recipe,result);return {recipeId:recipe.id,areas:areaKey(result),power:stats.power,fortitude:stats.fortitude,...f,result:{placements:result.placements,score:result.score,stats,value:stats.power+stats.fortitude}};}
