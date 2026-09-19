@@ -1,0 +1,260 @@
+{
+  "enemy": {
+    "Id": {
+      "Value": 105
+    },
+    "Type": 0,
+    "ChronologicalIndex": 30,
+    "FarChance": 0,
+    "MissChance": 0,
+    "LootTableIndex": 62,
+    "BaseRolls": 4,
+    "PlayerCharacter": 0,
+    "PlayerPose": 0,
+    "PlayerOutfit": 0,
+    "PlayerExpression": 6,
+    "PlayerBind": 3,
+    "OpponentCharacter": 13,
+    "OpponentPose": 1,
+    "OpponentOutfit": 2,
+    "OpponentExpression": 9,
+    "OpponentBind": 3,
+    "Card0": {
+      "CardId": 0,
+      "CardBaseId": 43,
+      "TierIndex": 0,
+      "IsSR": 0,
+      "UnusedByte1": 0,
+      "UnusedByte2": 0,
+      "CardColorType": 3,
+      "BasePower": 9700,
+      "BaseFortitude": 68700,
+      "BaseRangeOffsetStart": 0,
+      "BaseRangeOffsetEnd": 0,
+      "TraitSlotType1": 2,
+      "TraitSlotType2": 2,
+      "TraitSlotType3": 2,
+      "TraitId1": 42,
+      "TraitId2": 38,
+      "TraitId3": 27,
+      "TraitSlotTypes": [
+        2,
+        2,
+        2
+      ],
+      "TraitIds": [
+        42,
+        38,
+        27
+      ],
+      "SecondsSinceEpochUtc": 0,
+      "Unused1": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Card1": {
+      "CardId": 0,
+      "CardBaseId": 43,
+      "TierIndex": 0,
+      "IsSR": 0,
+      "UnusedByte1": 0,
+      "UnusedByte2": 0,
+      "CardColorType": 5,
+      "BasePower": 9700,
+      "BaseFortitude": 68700,
+      "BaseRangeOffsetStart": 0,
+      "BaseRangeOffsetEnd": 0,
+      "TraitSlotType1": 2,
+      "TraitSlotType2": 2,
+      "TraitSlotType3": 2,
+      "TraitId1": 42,
+      "TraitId2": 65,
+      "TraitId3": 24,
+      "TraitSlotTypes": [
+        2,
+        2,
+        2
+      ],
+      "TraitIds": [
+        42,
+        65,
+        24
+      ],
+      "SecondsSinceEpochUtc": 0,
+      "Unused1": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Card2": {
+      "CardId": 0,
+      "CardBaseId": 43,
+      "TierIndex": 0,
+      "IsSR": 0,
+      "UnusedByte1": 0,
+      "UnusedByte2": 0,
+      "CardColorType": 2,
+      "BasePower": 9700,
+      "BaseFortitude": 68700,
+      "BaseRangeOffsetStart": -1,
+      "BaseRangeOffsetEnd": 2,
+      "TraitSlotType1": 2,
+      "TraitSlotType2": 2,
+      "TraitSlotType3": 2,
+      "TraitId1": 31,
+      "TraitId2": 39,
+      "TraitId3": 17,
+      "TraitSlotTypes": [
+        2,
+        2,
+        2
+      ],
+      "TraitIds": [
+        31,
+        39,
+        17
+      ],
+      "SecondsSinceEpochUtc": 0,
+      "Unused1": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Card3": {
+      "CardId": 0,
+      "CardBaseId": 43,
+      "TierIndex": 0,
+      "IsSR": 0,
+      "UnusedByte1": 0,
+      "UnusedByte2": 0,
+      "CardColorType": 1,
+      "BasePower": 9700,
+      "BaseFortitude": 68700,
+      "BaseRangeOffsetStart": 0,
+      "BaseRangeOffsetEnd": 1,
+      "TraitSlotType1": 2,
+      "TraitSlotType2": 2,
+      "TraitSlotType3": 0,
+      "TraitId1": 66,
+      "TraitId2": 67,
+      "TraitId3": -1,
+      "TraitSlotTypes": [
+        2,
+        2,
+        0
+      ],
+      "TraitIds": [
+        66,
+        67,
+        -1
+      ],
+      "SecondsSinceEpochUtc": 0,
+      "Unused1": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Card4": {
+      "CardId": 0,
+      "CardBaseId": 43,
+      "TierIndex": 0,
+      "IsSR": 0,
+      "UnusedByte1": 0,
+      "UnusedByte2": 0,
+      "CardColorType": 4,
+      "BasePower": 9700,
+      "BaseFortitude": 68700,
+      "BaseRangeOffsetStart": 0,
+      "BaseRangeOffsetEnd": 0,
+      "TraitSlotType1": 2,
+      "TraitSlotType2": 2,
+      "TraitSlotType3": 2,
+      "TraitId1": 68,
+      "TraitId2": 18,
+      "TraitId3": 63,
+      "TraitSlotTypes": [
+        2,
+        2,
+        2
+      ],
+      "TraitIds": [
+        68,
+        18,
+        63
+      ],
+      "SecondsSinceEpochUtc": 0,
+      "Unused1": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "UnlockScenarioId": {
+      "underlyingValue": 0
+    },
+    "DifficultyRating": 999,
+    "EncounterScenarioType": 1
+  },
+  "availableTraitIds": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    63
+  ]
+}

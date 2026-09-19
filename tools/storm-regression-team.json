@@ -1,0 +1,231 @@
+[
+  {
+    "id": 66,
+    "power": 41958,
+    "fortitude": 39960,
+    "left": 4,
+    "right": 4,
+    "slots": 3,
+    "color": 3,
+    "traits": [
+      {
+        "id": 51,
+        "name": "范围集中强化 III",
+        "effects": [
+          {
+            "Parameter0": 53,
+            "TraitEffect": 1,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "范围内在增强 III",
+        "effects": [
+          {
+            "Parameter0": 27,
+            "TraitEffect": 1,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          },
+          {
+            "Parameter0": 27,
+            "TraitEffect": 2,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "范围内在削弱",
+        "effects": [
+          {
+            "Parameter0": 53,
+            "TraitEffect": 129,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "power": 87912,
+    "fortitude": 109890,
+    "left": 0,
+    "right": 0,
+    "slots": 1,
+    "color": 5,
+    "traits": [
+      {
+        "id": 20,
+        "name": "内在眩惑",
+        "effects": [
+          {
+            "Parameter0": 100,
+            "TraitEffect": 128,
+            "TraitActivationCondition": 6,
+            "Unused0": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "power": 49950,
+    "fortitude": 9990,
+    "left": 3,
+    "right": 3,
+    "slots": 3,
+    "color": 2,
+    "traits": [
+      {
+        "id": 21,
+        "name": "范围内在眩惑",
+        "effects": [
+          {
+            "Parameter0": 53,
+            "TraitEffect": 128,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "name": "周期攻击 III",
+        "effects": [
+          {
+            "Parameter0": 1760,
+            "TraitEffect": 8096,
+            "TraitActivationCondition": 9,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "范围内在增强 III",
+        "effects": [
+          {
+            "Parameter0": 27,
+            "TraitEffect": 1,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          },
+          {
+            "Parameter0": 27,
+            "TraitEffect": 2,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "power": 32967,
+    "fortitude": 24975,
+    "left": 3,
+    "right": 1,
+    "slots": 3,
+    "color": 1,
+    "traits": [
+      {
+        "id": 11,
+        "name": "周期攻击 III",
+        "effects": [
+          {
+            "Parameter0": 1760,
+            "TraitEffect": 8096,
+            "TraitActivationCondition": 9,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "范围内在削弱",
+        "effects": [
+          {
+            "Parameter0": 53,
+            "TraitEffect": 129,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 39,
+        "name": "范围内在增强 III",
+        "effects": [
+          {
+            "Parameter0": 27,
+            "TraitEffect": 1,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          },
+          {
+            "Parameter0": 27,
+            "TraitEffect": 2,
+            "TraitActivationCondition": 7,
+            "Unused0": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "power": 31968,
+    "fortitude": 51948,
+    "left": 1,
+    "right": 1,
+    "slots": 3,
+    "color": 1,
+    "traits": [
+      {
+        "id": 42,
+        "name": "精神强化 III",
+        "effects": [
+          {
+            "Parameter0": 100,
+            "TraitEffect": 2,
+            "TraitActivationCondition": 6,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "name": "回响回复 III",
+        "effects": [
+          {
+            "Parameter0": 1060,
+            "TraitEffect": 8097,
+            "TraitActivationCondition": 2,
+            "Unused0": 0
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "内在眩惑",
+        "effects": [
+          {
+            "Parameter0": 100,
+            "TraitEffect": 128,
+            "TraitActivationCondition": 6,
+            "Unused0": 0
+          }
+        ]
+      }
+    ]
+  }
+]
