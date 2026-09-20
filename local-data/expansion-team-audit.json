@@ -2,16 +2,16 @@
   {
     "mode": "storm",
     "before": 532659.3883237918,
-    "after": 532659.3883237918,
-    "improved": false,
-    "percent": 0
+    "after": 583859.6094067477,
+    "improved": true,
+    "percent": 9.612187864382937
   },
   {
     "mode": "balanced",
-    "before": 7353348.594317133,
-    "after": 7500082.2045394005,
+    "before": 7500082.2045394005,
+    "after": 7561667.842109024,
     "improved": true,
-    "percent": 1.9954665325627063
+    "percent": 0.8211328341487745
   },
   {
     "mode": "damage",
