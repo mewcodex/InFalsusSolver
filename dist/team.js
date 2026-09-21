@@ -5,7 +5,7 @@ const num=n=>Math.round(n).toLocaleString('zh-CN'),colorNames=['无色','红','�
 try{
  const choice=loadoutKey(new URLSearchParams(location.search).get('loadout'));
  const selector=document.getElementById('team-choice');selector.value=choice;selector.onchange=()=>{const url=new URL(location.href);url.searchParams.set('loadout',selector.value);location.href=url};
- const [team,data]=await Promise.all([loadoutFiles[choice],'data.json'].map(async p=>{const r=await fetch(p+'?v=snapshot-30548');if(!r.ok)throw Error('方案文件加载失败');return r.json()}));
+ const [team,data]=await Promise.all([loadoutFiles[choice],'data.json'].map(async p=>{const r=await fetch(p+'?v=snapshot-64812-credit');if(!r.ok)throw Error('方案文件加载失败');return r.json()}));
  let metrics,context,conditions;
  const common='角色满级 · 粒子效能 999 · 谱面等级 15 · 计入联觉、阶段暴击、诅咒。卡名不重复；技能可以跨卡重复，单卡内不重复；每张卡威力与耐力均大于 0。';
  if(choice==='storm-score'){
@@ -24,6 +24,7 @@ try{
  document.getElementById('team-context').textContent=context;
  const summary=document.getElementById('team-summary');summary.className='team-summary';summary.innerHTML=metrics.map(([value,label])=>`<div><strong>${escape(value)}</strong><span>${escape(label)}</span></div>`).join('');
  document.getElementById('team-conditions').innerHTML=`<h2>计算条件</h2><p>${escape(common)}</p><p>${escape(conditions)}</p><p>最高已知可行解，未证明全局最优。<a href="rewards.html#score">查看遭遇评分公式</a>。</p>`;
+ if(choice==='storm-score')document.getElementById('team-conditions').insertAdjacentHTML('beforeend','<h3>来源与致谢 / Credit</h3><p>感谢 <a href="https://mengleifudge.github.io/InFalsusCalc/" target="_blank" rel="noopener noreferrer">mengleifudge · InFalsusCalc</a> 提供的风暴配卡与第四张卡区域1、5、7、8、9的一惩罚拼法。它补足了本站此前仅有两惩罚解的候选，是本轮改进的起点。本站复核了拼图合法性与实际事件顺序，并继续调整技能与邻域配卡；最终展示以本页为准。第三张卡使用本站已有的同属性合法拼法，每格最多三重叠。</p>');
  if(choice==='storm-score'){
   const r=team.reference995Level11.result;
   document.getElementById('team-conditions').insertAdjacentHTML('beforeend',`<h3>粒子 995 · 11 级曲参考</h3><p>保持本页拼法、颜色和技能，全部粒子效能改为 995、谱面等级改为 11：预计遭遇分 <strong>${num(r.score)}</strong>，攻击率 ${num(r.dp*100/(100+r.he)*100)}、防御率 ${num(10000*(100+r.hp)/r.de)}；最低血量 ${r.minHp.toFixed(2)}%，结束血量 ${r.phases.at(-1).playerHp.toFixed(2)}%。按双方准确率 100%、五阶段等物量参考模型计算；具体谱面的整数判定数会带来小幅差异。</p><p>本轮使用扩充解库快照进行多起点随机搜索、单卡替换与特质逐项优化，并检查特质顺序和双卡候选替换。尚未穷举所有特质组合，也未证明全局最优。</p>`);
