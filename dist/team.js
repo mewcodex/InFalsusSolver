@@ -5,7 +5,7 @@ const num=n=>Math.round(n).toLocaleString('zh-CN'),colorNames=['无色','红','�
 try{
  const choice=loadoutKey(new URLSearchParams(location.search).get('loadout'));
  const selector=document.getElementById('team-choice');selector.value=choice;selector.onchange=()=>{const url=new URL(location.href);url.searchParams.set('loadout',selector.value);location.href=url};
- const [team,data]=await Promise.all([loadoutFiles[choice],'data.json'].map(async p=>{const r=await fetch(p+'?v=snapshot-81520-refresh');if(!r.ok)throw Error('方案文件加载失败');return r.json()}));
+ const [team,data]=await Promise.all([loadoutFiles[choice],'data.json'].map(async p=>{const r=await fetch(p+'?v=snapshot-93928-refresh');if(!r.ok)throw Error('方案文件加载失败');return r.json()}));
  let metrics,context,conditions;
  const common='角色满级 · 粒子效能 999 · 谱面等级 15 · 计入联觉、阶段暴击、诅咒。卡名不重复；技能可以跨卡重复，单卡内不重复；每张卡威力与耐力均大于 0。';
  if(choice==='storm-score'){
